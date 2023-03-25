@@ -1,0 +1,38 @@
+@font-face{
+    font-family: 'montserrat';
+    src: url("Font/Montserrat-Regular.otf") format('opentype');
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'montserrat';
+}
+
+.slogan h1{
+    font-size: 50px;
+}
+
+.mid{
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login{
+    width: 360px;
+    padding: 20px;
+    border-radius: 12px;
+    background: white;
+}
+
+.home{
+    margin: 60px;
+}
+
+.logo img{
+    width: 250px;
+    height: auto;
+}
