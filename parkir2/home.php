@@ -12,13 +12,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
+    *{
+        font-family: Arial;
+    }
     body{
         background: #E9E9E9;
     }
     .card{
         box-shadow: 11px 10px 20px 0px rgba(0,0,0,0.1);
--webkit-box-shadow: 11px 10px 20px 0px rgba(0,0,0,0.1);
--moz-box-shadow: 11px 10px 20px 0px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 11px 10px 20px 0px rgba(0,0,0,0.1);
+        -moz-box-shadow: 11px 10px 20px 0px rgba(0,0,0,0.1);
     }
 </style>
 <body class="sb-nav-fixed">
@@ -112,7 +115,7 @@
                                         </div>
                                         <div class="col-8 ml-4">
                                             <span><b>Tanggal</b></span><br/>
-                                            <span>20 Maret 2023</span>
+                                            <span><?php echo date("d F Y", ); ?></span>
                                         </div>
                                         
                                     </div>

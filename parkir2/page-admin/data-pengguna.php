@@ -1,3 +1,5 @@
+<?php require "../function.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +20,7 @@
                     <div class="card-header">
                         <div class="card-title mt-2">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-7">
                                     <span class="title">Daftar Pengguna</span>
                                 </div>
                                 <div class="col-3">
@@ -29,8 +31,8 @@
                                         </button>     
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahPengguna">Tambah</button>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahPengguna">Tambah Pengguna</button>
                                 </div>
                             </div>
                         </div>
@@ -44,6 +46,7 @@
                                     <th>Nama Belakang</th>
                                     <th>Email</th>
                                     <th>No. Telepon</th>
+                                    <th>Password</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
@@ -54,6 +57,7 @@
                                     <td>Arifynies</td>
                                     <td>johansen.arifin@gmail.com</td>
                                     <td>082365478912</td>
+                                    <td>GGabis123</td>
                                     <td class="text-center opsi">
                                         <!-- detail -->
                                         <!-- <button type="button" class="btn btn-primary">
@@ -87,38 +91,44 @@
                     <h4 class="modal-title">Tambah Pengguna</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="">
+                <form method="POST">
+                    <div class="modal-body">
                         <div class="mb-3 row">
                             <label for="namaDepan" class="col-sm-4 col-form-label">Nama Depan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="namaDepan">
+                                <input type="text" class="form-control" name="nama_depan" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="namaBelakang" class="col-sm-4 col-form-label">Nama Belakang</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="namaBelakang">
+                                <input type="text" class="form-control" name="nama_belakang" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" name="email" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="noTelp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="noTelp">
+                                <input type="text" class="form-control" name="no_telp" required>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                </div>
+                        <div class="mb-3 row">
+                            <label for="noTelp" class="col-sm-4 col-form-label">Password</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="password" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" name="tambahPengguna" value="tambahPengguna">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -136,37 +146,37 @@
                         <div class="mb-3 row">
                             <label for="idPengguna" class="col-sm-4 col-form-label">ID</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control" id="idPengguna" value="1">
+                                <input type="text" readonly class="form-control" name="id_pengguna" value="1">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="namaDepan" class="col-sm-4 col-form-label">Nama Depan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="namaDepan">
+                                <input type="text" class="form-control" name="nama_depan" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="namaBelakang" class="col-sm-4 col-form-label">Nama Belakang</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="namaBelakang">
+                                <input type="text" class="form-control" name="nama_belakang" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" name="email" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="noTelp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="noTelp">
+                                <input type="text" class="form-control" name="no_telp" required>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Simpan</button>
+                    <button type="submit" class="btn btn-success" name="editPengguna" value="editPengguna">Simpan</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                 </div>
             </div>
@@ -186,38 +196,38 @@
                         <div class="mb-3 row">
                             <label for="idPengguna" class="col-sm-4 col-form-label">ID</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control" id="idPengguna" value="1">
+                                <input type="text" readonly class="form-control" name="id_pengguna" value="1">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="namaDepan" class="col-sm-4 col-form-label">Nama Depan</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control" id="namaDepan" value="Johansenius">
+                                <input type="text" readonly class="form-control" name="nama_depan" value="Johansenius">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="namaBelakang" class="col-sm-4 col-form-label">Nama Belakang</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control" id="namaBelakang" value="Arifynies">
+                                <input type="text" readonly class="form-control" name="nama_belakang" value="Arifynies">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" readonly class="form-control" id="email" value="johansen.arifin@gmail.com">
+                                <input type="email" readonly class="form-control" name="email" value="johansen.arifin@gmail.com">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="noTelp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control" id="noTelp" value="082365478912">
+                                <input type="text" readonly class="form-control" name="no_telp" value="082365478912">
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <h6 class="mx-5 my-3 pr-3">Anda yakin ingin menghapus data pengguna ini?</h6>
-                    <button type="button" class="btn btn-success">Hapus</button>
+                    <button type="submit" class="btn btn-success" name="hapusPengguna" value="hapusPengguna">Hapus</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                 </div>
             </div>
