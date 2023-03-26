@@ -24,12 +24,14 @@
                                     <span class="title">Daftar Pengguna</span>
                                 </div>
                                 <div class="col-3">
-                                    <div class="input-group">
-                                        <input type="search" id="searchLokasi" name= "searchLokasi" class="form-control" placeholder="Cari Nama Pengguna"/>
-                                        <button id="btnSearchLokasi" class="btn btn-success" type="button">
-                                            <i class="fas fa-search"></i>
-                                        </button>     
-                                    </div>
+                                    <form method="POST">
+                                        <div class="input-group">
+                                            <input type="search" id="nama_pengguna" name= "nama_pengguna" class="form-control" placeholder="Cari Nama Pengguna" autocomplete="off"/>
+                                            <button name="cariNamaPengguna" class="btn btn-success" type="submit">
+                                                <i class="fas fa-search"></i>
+                                            </button> 
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="col-2">
                                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahPengguna">Tambah Pengguna</button>
@@ -82,7 +84,8 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                $selectPengguna = mysqli_query($conn, "SELECT * FROM pengguna");
+                                $nama_pengguna = empty($_REQUEST['nama_pengguna']) ? "" : $_REQUEST['nama_pengguna'];
+                                $selectPengguna = mysqli_query($conn, "SELECT * FROM pengguna WHERE CONCAT(nama_depan, ' ', nama_belakang) LIKE '%$nama_pengguna%'");
                                 while($row = mysqli_fetch_assoc($selectPengguna)){
                                 ?>
                                 <tr>

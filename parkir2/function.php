@@ -59,4 +59,11 @@ if(isset($_POST['hapusPengguna'])){
     }
 }
 
+//cari pengguna
+if(isset($_POST['cariNamaPengguna'])){
+    $nama_pengguna = $_POST['nama_pengguna'];  
+    header('location:data-pengguna.php?nama_pengguna=' . $nama_pengguna);
+
+}
+
 ?>
