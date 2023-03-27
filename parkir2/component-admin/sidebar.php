@@ -1,21 +1,21 @@
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-            <div class="nav">
+            <ul class="nav">
                 <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
-                <a class="nav-link" href="home.php">
-                    <div class="ikon"><img src="img/home.svg"></div>
+                <a class="nav-link" href="../page-admin/data-lokasi.php">
+                <i class="fa-solid fa-location-dot pl-1 mr-2"></i>
                     &nbsp;&nbsp;Data Lokasi
                 </a>
 
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="ikon"><img src="img/booking.svg"></div>
+                <a class="nav-link collapsed" href="../page-admin/data-pengguna.php">
+                <i class="fa-solid fa-users mr-1"></i>
                     &nbsp;&nbsp;Data Pengguna
                 </a>
                 
                 <!-- <div class="sb-sidenav-menu-heading">Interface</div> -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="ikon"><img src="img/history.svg"></div>
+                <i class="fa-solid fa-file-invoice fa-lg pl-1" style="width: 25px"></i>
                     &nbsp;&nbsp;Laporan
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -26,11 +26,11 @@
                         <a class="nav-link" href="cancel.php">Laporan Anu</a>
                     </nav>
                 </div>            
-            </div>
+            </ul>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            user1@gmail.com
+            Admin
         </div>
     </nav>
 </div>

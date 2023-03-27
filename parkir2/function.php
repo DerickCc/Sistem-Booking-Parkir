@@ -63,7 +63,45 @@ if(isset($_POST['hapusPengguna'])){
 if(isset($_POST['cariNamaPengguna'])){
     $nama_pengguna = $_POST['nama_pengguna'];  
     header('location:data-pengguna.php?nama_pengguna=' . $nama_pengguna);
-
 }
+//--------------------------------------------------------------------------------//
+
+//tambah lokasi
+if(isset($_POST['tambahLokasi'])){
+    $nama_lokasi = $_POST['nama_lokasi'];
+    $tipe = $_POST['tipe'];
+    $tarif = $_POST['tarif'];
+
+    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$tipe', '$tarif')");
+
+    if($insert){
+        header('location:data-lokasi.php?status=1');
+    }
+    else{
+        header('location:data-lokasi.php?status=0');
+    }
+}
+
+//edit lokasi
+if(isset($_POST['editLokasi'])){
+    $id_lokasi = $_POST['id_lokasi'];
+    $nama_lokasi = $_POST['nama_lokasi'];
+    $tipe = $_POST['tipe'];
+    $tarif = $_POST['tarif'];
+
+    $update = mysqli_query($conn, "UPDATE lokasi SET
+    nama_lokasi='$nama_lokasi',
+    tipe='$tipe',
+    tarif='$tarif' WHERE id_lokasi='$id_lokasi'");
+
+    if($update){
+        header('location:data-lokasi.php?status=2');
+    }
+    else{
+        header('location:data-lokasi.php?status=0');
+    }
+}
+
+
 
 ?>
