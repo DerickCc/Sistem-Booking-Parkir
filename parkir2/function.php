@@ -102,6 +102,26 @@ if(isset($_POST['editLokasi'])){
     }
 }
 
+//hapus lokasi
+if(isset($_POST['hapusLokasi'])){
+    $id_lokasi = $_POST['id_lokasi'];
+
+    $delete = mysqli_query($conn, "DELETE FROM lokasi WHERE id_lokasi = '$id_lokasi'");
+
+    if($delete){
+        header('location:data-lokasi.php?status=3');
+    }
+    else{
+        header('location:data-lokasi.php?status=0');
+    }
+}
+
+//cari lokasi
+if(isset($_POST['cariNamaLokasi'])){
+    $nama_lokasi = $_POST['nama_lokasi'];  
+    header('location:data-lokasi.php?nama_lokasi=' . $nama_lokasi);
+}
+
 
 
 ?>

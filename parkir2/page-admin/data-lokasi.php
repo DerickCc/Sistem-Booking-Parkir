@@ -150,6 +150,7 @@
                                 <input type="number" class="form-control" name="tarif" min="1000" max="10000" step="1000" autocomplete="off" required>
                             </div>
                         </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success" name="tambahLokasi" value="tambahLokasi">Tambah</button>
                         <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
@@ -210,6 +211,7 @@
                                 min="1000" max="10000" step="1000" autocomplete="off" required>
                             </div>
                         </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success" name="editLokasi" value="editLokasi">Edit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
