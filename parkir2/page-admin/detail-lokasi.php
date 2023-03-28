@@ -1,40 +1,44 @@
-<?php include "../function.php" ?>
+<?php 
+include "../function.php";
+$id_lokasi = $_REQUEST['id_lokasi'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "../component-admin/head.php" ?>
+<?php include "../component-admin/head.php"?>
 
 <body class="sb-nav-fixed">
 
-    <?php include "../component-admin/navbar.php" ?>
+    <?php include "../component-admin/navbar.php"?>
 
     <div id="layoutSidenav">
 
-        <?php include "../component-admin/sidebar.php" ?>
-        
+        <?php include "../component-admin/sidebar.php"?>
+
         <div id="layoutSidenav_content">
             <div class="row">
                 <h3>Lokasi</h3>
-                <div class="card">
+                <div class="card col-11 mx-auto">
                     <div class="card-header">
                         <div class="card-title mt-2">
                             <div class="row">
-                                <div class="col-7">
-                                    <span class="title">Daftar Lokasi</span>
+                                <div class="col-7 d-flex align-items-center">
+                                    <a href="data-lokasi.php"><i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i></a>
+                                    <span class="ml-3 title">Detail Lokasi</span>
                                 </div>
                                 <div class="col-3">
                                     <form method="POST">
                                         <div class="input-group">
-                                            <input type="search" id="nama_lokasi" name="nama_lokasi" class="form-control" placeholder="Cari Lokasi" autocomplete="off"/>
-                                            <button name="cariNamaLokasi" class="btn btn-success" type="submit">
+                                            <input type="search" id="nama_slot" name="nama_slot" class="form-control" placeholder="Cari Nama Slot" autocomplete="off"/>
+                                            <button name="cariNamaSlot" class="btn btn-success" type="submit">
                                                 <i class="fas fa-search"></i>
                                             </button> 
                                         </div>
                                     </form>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahLokasi">Tambah Lokasi</button>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahSlot">Tambah Slot</button>
                                 </div>
                             </div>
                         </div>
@@ -50,13 +54,13 @@
                                 <div class='alert alert-success alert-dismissible fade show' role='alert'>
                                     <i class='fa-solid fa-circle-check mr-2'></i>";
                                     if($_REQUEST['status']==1){
-                                        echo "Data Lokasi Berhasil Ditambahkan.";
+                                        echo "Data Slot Berhasil Ditambahkan.";
                                     }
                                     elseif($_REQUEST['status']==2){
-                                        echo "Data Lokasi Berhasil Diedit.";
+                                        echo "Data Slot Berhasil Diedit.";
                                     }
                                     else{
-                                        echo "Data Lokasi Berhasil Dihapus";
+                                        echo "Data Slot Berhasil Dihapus";
                                     }
                                     echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                 </div>";
@@ -74,36 +78,31 @@
                             <thead class="bg-dark text-white">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nama Lokasi</th>
-                                    <th>Tipe</th>
-                                    <th>Tarif / jam</th>
+                                    <th>Nama Slot</th>
+                                    <th>Status</th>
+                                    <th>Lantai</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                $nama_lokasi = empty($_REQUEST['nama_lokasi']) ? "" : $_REQUEST['nama_lokasi'];
-                                $selectLokasi = mysqli_query($conn, "SELECT * FROM lokasi WHERE nama_lokasi LIKE '%$nama_lokasi%'");
-                                while($row = mysqli_fetch_assoc($selectLokasi)){
+                                $nama_slot = empty($_REQUEST['nama_slot']) ? "" : $_REQUEST['nama_slot'];
+                                $selectSlot = mysqli_query($conn, "SELECT * FROM detail_lokasi WHERE nama_slot LIKE '%$nama_slot%' AND id_lokasi='$id_lokasi'");
+                                while($row = mysqli_fetch_assoc($selectSlot)){
                                 ?>
                                 <tr>
-                                    <td><?= $row['id_lokasi'];?></td>
-                                    <td><?= $row['nama_lokasi'];?></td>
-                                    <td><?= ucwords($row['tipe']);?></td>
-                                    <td><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?></td>
+                                    <td><?= $row['id_slot'];?></td>
+                                    <td><?= $row['nama_slot'];?></td>
+                                    <td><?= ucwords($row['status_slot']);?></td>
+                                    <td><?= $row['lantai'];?></td>
                                     <td class="text-center opsi">
-                                        <!-- detail -->
-                                        <a role="button" class="btn btn-primary" href="detail-lokasi.php?id_lokasi=<?= $row['id_lokasi'];?>">
-                                            <i class="fa-solid fa-folder-open"></i>
-                                        </a>
-
                                         <!-- edit -->
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editLokasi<?= $row['id_lokasi'];?>">
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSLot<?= $row['id_slot'];?>">
                                             <i class="fa-regular fa-pen-to-square fa-lg" style="color: #fff"></i>
                                         </button>
 
                                         <!-- hapus -->
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusLokasi<?= $row['id_lokasi'];?>">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusSlot<?= $row['id_slot'];?>">
                                             <i class="far fa-trash-alt fa-lg"></i>
                                         </button>
                                     </td>
@@ -118,41 +117,56 @@
             </div>
         </div>
     </div>
-
-    <!-- modal tambah lokasi -->
-    <div class="modal fade" id="tambahLokasi" aria-labelledby="tambahLokasi" aria-hidden="true">
+    
+    <!-- modal tambah slot -->
+    <div class="modal fade" id="tambahSlot" aria-labelledby="tambahSlot" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST">
                     <div class="modal-header bg-success text-white">
-                        <h4 class="modal-title">Tambah Lokasi</h4>
+                        <h4 class="modal-title">Tambah Slot</h4>
                         <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <input type="number" class="form-control" name="id_lokasi" value="<?= $id_lokasi?>" hidden>
                         <div class="mb-3 row">
-                            <label for="nama_lokasi" class="col-sm-4 col-form-label">Nama Lokasi</label>
+                            <label for="nama_slot" class="col-sm-4 col-form-label">Nama Slot</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="nama_lokasi" autocomplete="off" required>
+                                <input type="text" class="form-control" name="nama_slot" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="tipe" class="col-sm-4 col-form-label">Tipe</label>
+                            <label for="status_slot" class="col-sm-4 col-form-label">Status</label>
                             <div class="col-sm-8">
-                                <select class="form-select" name="tipe" required>
-                                    <option selected value="gedung">Gedung</option>
-                                    <option value="jalanan">Jalanan</option>
-                                </select>
+                                <input type="text" class="form-control" name="status_slot" value="available" readonly>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="tarif" class="col-sm-4 col-form-label">Tarif</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="tarif" min="1000" max="10000" step="1000" autocomplete="off" required>
-                            </div>
-                        </div>
+                        <?php
+                        $selectTipeLokasi = mysqli_query($conn, "SELECT tipe FROM lokasi WHERE id_lokasi='$id_lokasi'");
+                        $row = mysqli_fetch_row($selectTipeLokasi);
+                        $tipeLokasi = $row[0];
+                        if($tipeLokasi == 'gedung'){
+                            echo '
+                            <div class="mb-3 row">
+                                <label for="lantai" class="col-sm-4 col-form-label">Lantai</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" name="lantai" min="1" max="30" autocomplete="off" required>
+                                </div>
+                            </div>';
+                        }
+                        else{
+                            echo '
+                            <div class="mb-3 row">
+                                <label for="lantai" class="col-sm-4 col-form-label">Lantai</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" name="lantai" value="1" readonly>
+                                </div>
+                            </div>';
+                        }
+                        ?>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" name="tambahLokasi" value="tambahLokasi">Tambah</button>
+                        <button type="submit" class="btn btn-success" name="tambahSlot" value="tambahSlot">Tambah</button>
                         <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </div>
                 </form>
@@ -160,60 +174,78 @@
         </div>
     </div>
 
-    <!-- nyari id lokasi yg ingin diedit / dihapus-->
+    <!-- nyari id slot yg ingin diedit / dihapus-->
     <?php
-    $selectLokasi = mysqli_query($conn, "SELECT * FROM lokasi");
-    while($row=mysqli_fetch_assoc($selectLokasi)){
+    $selectSlot = mysqli_query($conn, "SELECT * FROM lokasi WHERE id_lokasi='$id_lokasi'");
+    while($row=mysqli_fetch_assoc($selectSlot)){
     ?>
-    <!-- modal edit lokasi -->
-    <div class="modal fade" id="editLokasi<?= $row['id_lokasi'];?>" aria-labelledby="editLokasi" aria-hidden="true">
+    <!-- modal edit slot -->
+    <div class="modal fade" id="editSlot<?= $row['id_slot'];?>" aria-labelledby="editSlot" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST">
                     <div class="modal-header bg-warning text-white">
-                        <h4 class="modal-title">Edit Lokasi</h4>
+                        <h4 class="modal-title">Edit Slot</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <input type="number" class="form-control" name="id_lokasi" value="<?= $id_lokasi?>" hidden>
                         <div class="mb-3 row">
-                            <label for="id_lokasi" class="col-sm-4 col-form-label">ID</label>
+                            <label for="id_slot" class="col-sm-4 col-form-label">ID</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="id_lokasi" value="<?= $row['id_lokasi'];?>" readonly>
+                                <input type="text" class="form-control" name="id_slot" value="<?= $row['id_slot'];?>" readonly>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="nama_lokasi" class="col-sm-4 col-form-label">Nama Lokasi</label>
+                            <label for="nama_slot" class="col-sm-4 col-form-label">Nama Slot</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="nama_lokasi" value="<?= $row['nama_lokasi'];?>" autocomplete="off" required>
+                                <input type="text" class="form-control" name="nama_slot" value="<?= $row['nama_slot'];?>" autocomplete="off" required>
                             </div>
                         </div> 
                         <div class="mb-3 row">
-                            <label for="tipe" class="col-sm-4 col-form-label">Tipe</label>
+                            <label for="status_slot" class="col-sm-4 col-form-label">Status</label>
                             <div class="col-sm-8">
-                                <select class="form-select" name="tipe" required>
+                                <select class="form-select" name="status_slot" required>
                                     <?php 
-                                    if($row['tipe'] == 'gedung'){
-                                        echo "<option selected value='gedung'>Gedung</option>
-                                        <option value='jalanan'>Jalanan</option>";
+                                    if($row['status_slot'] == 'available'){
+                                        echo "<option selected value='available'>Available</option>
+                                        <option value='unavailable'>Unavailable</option>";
                                     }
                                     else{
-                                        echo "<option value='gedung'>Gedung</option>
-                                        <option selected value='jalanan'>Jalanan</option>";
+                                        echo "<option value='available'>Available</option>
+                                        <option selected value='unavailable'>Unavailable</option>";
                                     }
                                     ?>
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="tarif" class="col-sm-4 col-form-label">Tarif</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="tarif" value="<?= $row['tarif'];?>"
-                                min="1000" max="10000" step="1000" autocomplete="off" required>
-                            </div>
-                        </div>
+                        <?php
+                        $selectTipeLokasi = mysqli_query($conn, "SELECT tipe FROM lokasi WHERE id_lokasi='$id_lokasi'");
+                        $row = mysqli_fetch_row($selectTipeLokasi);
+                        $tipeLokasi = $row[0];
+                        if($tipeLokasi == 'gedung'){
+                            echo '
+                            <div class="mb-3 row">
+                                <label for="lantai" class="col-sm-4 col-form-label">Lantai</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" name="lantai" value="'.$row[lantai].'" min="1" max="30" autocomplete="off" required>
+                                </div>
+                            </div>';
+                        }
+                        else{
+                            echo '
+                            <div class="mb-3 row">
+                                <label for="lantai" class="col-sm-4 col-form-label">Lantai</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" name="lantai" value="1" readonly>
+                                </div>
+                            </div>';
+                        }
+                        mysqli_close($conn);
+                        ?>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" name="editLokasi" value="editLokasi">Edit</button>
+                        <button type="submit" class="btn btn-success" name="editSlot" value="editSlot">Edit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </div>
                 </form>
@@ -221,7 +253,7 @@
         </div>
     </div>
 
-    <!-- modal hapus lokasi -->
+    <!-- modal hapus slot -->
     <div class="modal fade" id="hapusLokasi<?= $row['id_lokasi'];?>" aria-labelledby="hapusLokasi" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -268,7 +300,7 @@
     <?php
     }
     ?>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>

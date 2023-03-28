@@ -121,7 +121,44 @@ if(isset($_POST['cariNamaLokasi'])){
     $nama_lokasi = $_POST['nama_lokasi'];  
     header('location:data-lokasi.php?nama_lokasi=' . $nama_lokasi);
 }
+//--------------------------------------------------------------------------------//
 
+//tambah slot
+if(isset($_POST['tambahSlot'])){
+    $id_lokasi = $_POST['id_lokasi'];
+    $nama_slot = $_POST['nama_slot'];
+    $status_slot = $_POST['status_slot'];
+    $lantai = $_POST['lantai'];
 
+    $insert = mysqli_query($conn, "INSERT INTO detail_lokasi VALUES ('', '$id_lokasi', '$nama_slot', '$status_slot', '$lantai')");
+
+    if($insert){
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=1');
+    }
+    else{
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
+    }
+}
+
+//edit Slot
+if(isset($_POST['editSlot'])){
+    $id_lokasi = $_POST['id_lokasi'];
+    $id_slot = $_POST['id_slot'];
+    $nama_slot = $_POST['nama_slot'];
+    $status_slot = $_POST['status_slot'];
+    $lantai = $_POST['lantai'];
+
+    $update = mysqli_query($conn, "UPDATE detail_lokasi SET
+    nama_slot='$nama_slot',
+    status_slot='$status_slot',
+    lantai='$lantai' WHERE id_slot='$id_slot'");
+
+    if($update){
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=2');
+    }
+    else{
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
+    }
+}
 
 ?>
