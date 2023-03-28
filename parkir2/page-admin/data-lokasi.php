@@ -26,7 +26,7 @@
                                 <div class="col-3">
                                     <form method="POST">
                                         <div class="input-group">
-                                            <input type="search" id="nama_lokasi" name= "nama_lokasi" class="form-control" placeholder="Cari Lokasi" autocomplete="off"/>
+                                            <input type="search" id="nama_lokasi" name="nama_lokasi" class="form-control" placeholder="Cari Lokasi" autocomplete="off"/>
                                             <button name="cariNamaLokasi" class="btn btn-success" type="submit">
                                                 <i class="fas fa-search"></i>
                                             </button> 
