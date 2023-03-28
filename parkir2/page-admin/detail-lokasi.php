@@ -97,7 +97,7 @@ $id_lokasi = $_REQUEST['id_lokasi'];
                                     <td><?= $row['lantai'];?></td>
                                     <td class="text-center opsi">
                                         <!-- edit -->
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSLot<?= $row['id_slot'];?>">
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSlot<?= $row['id_slot'];?>">
                                             <i class="fa-regular fa-pen-to-square fa-lg" style="color: #fff"></i>
                                         </button>
 
@@ -120,7 +120,7 @@ $id_lokasi = $_REQUEST['id_lokasi'];
     
     <!-- modal tambah slot -->
     <div class="modal fade" id="tambahSlot" aria-labelledby="tambahSlot" aria-hidden="true">
-         <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST">
                     <div class="modal-header bg-success text-white">
@@ -176,8 +176,8 @@ $id_lokasi = $_REQUEST['id_lokasi'];
 
     <!-- nyari id slot yg ingin diedit / dihapus-->
     <?php
-    $selectSlot = mysqli_query($conn, "SELECT * FROM lokasi WHERE id_lokasi='$id_lokasi'");
-    while($row=mysqli_fetch_assoc($selectSlot)){
+    $selectSlot = mysqli_query($conn, "SELECT * FROM detail_lokasi WHERE id_lokasi='$id_lokasi'");
+    while($row = mysqli_fetch_assoc($selectSlot)){
     ?>
     <!-- modal edit slot -->
     <div class="modal fade" id="editSlot<?= $row['id_slot'];?>" aria-labelledby="editSlot" aria-hidden="true">
