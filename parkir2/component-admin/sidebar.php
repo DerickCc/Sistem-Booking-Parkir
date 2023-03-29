@@ -2,18 +2,16 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <ul class="nav">
-                <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
                 <a class="nav-link" href="../page-admin/data-lokasi.php">
                 <i class="fa-solid fa-location-dot pl-1 mr-2"></i>
                     &nbsp;&nbsp;Data Lokasi
                 </a>
 
-                <a class="nav-link collapsed" href="../page-admin/data-pengguna.php">
+                <a class="nav-link" href="../page-admin/data-pengguna.php">
                 <i class="fa-solid fa-users mr-1"></i>
                     &nbsp;&nbsp;Data Pengguna
                 </a>
                 
-                <!-- <div class="sb-sidenav-menu-heading">Interface</div> -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
                 <i class="fa-solid fa-file-invoice fa-lg pl-1" style="width: 25px"></i>
                     &nbsp;&nbsp;Laporan

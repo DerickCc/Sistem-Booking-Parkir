@@ -69,10 +69,11 @@ if(isset($_POST['cariNamaPengguna'])){
 //tambah lokasi
 if(isset($_POST['tambahLokasi'])){
     $nama_lokasi = $_POST['nama_lokasi'];
+    $alamat = $_POST['alamat'];
     $tipe = $_POST['tipe'];
     $tarif = $_POST['tarif'];
 
-    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$tipe', '$tarif')");
+    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$alamat', '$tipe', '$tarif')");
 
     if($insert){
         header('location:data-lokasi.php?status=1');
@@ -86,11 +87,13 @@ if(isset($_POST['tambahLokasi'])){
 if(isset($_POST['editLokasi'])){
     $id_lokasi = $_POST['id_lokasi'];
     $nama_lokasi = $_POST['nama_lokasi'];
+    $alamat = $_POST['alamat'];
     $tipe = $_POST['tipe'];
     $tarif = $_POST['tarif'];
 
     $update = mysqli_query($conn, "UPDATE lokasi SET
     nama_lokasi='$nama_lokasi',
+    alamat='$alamat',
     tipe='$tipe',
     tarif='$tarif' WHERE id_lokasi='$id_lokasi'");
 
@@ -106,6 +109,9 @@ if(isset($_POST['editLokasi'])){
 if(isset($_POST['hapusLokasi'])){
     $id_lokasi = $_POST['id_lokasi'];
 
+    // $delete = mysqli_query($conn, "DELETE lokasi, detail_lokasi 
+    //                                FROM lokasi INNER JOIN detail_lokasi ON lokasi.id_lokasi = detail_lokasi.id_lokasi 
+    //                                WHERE lokasi.id_lokasi = '$id_lokasi'");
     $delete = mysqli_query($conn, "DELETE FROM lokasi WHERE id_lokasi = '$id_lokasi'");
 
     if($delete){
@@ -160,5 +166,28 @@ if(isset($_POST['editSlot'])){
         header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
     }
 }
+
+//hapus Slot
+if(isset($_POST['hapusSlot'])){
+    $id_lokasi = $_POST['id_lokasi'];
+    $id_slot = $_POST['id_slot'];
+
+    $delete = mysqli_query($conn, "DELETE FROM detail_lokasi WHERE id_slot = '$id_slot'");
+
+    if($delete){
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=3');
+    }
+    else{
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
+    }
+}
+
+//cari slot
+if(isset($_POST['cariNamaSlot'])){
+    $id_lokasi = $_POST['id_lokasi'];  
+    $nama_slot = $_POST['nama_slot'];  
+    header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&nama_slot=' . $nama_slot);
+}
+
 
 ?>

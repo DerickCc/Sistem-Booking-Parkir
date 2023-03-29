@@ -16,7 +16,7 @@
         <div id="layoutSidenav_content">
             <div class="row">
                 <h3>Lokasi</h3>
-                <div class="card">
+                <div class="card col-11 mx-auto">
                     <div class="card-header">
                         <div class="card-title mt-2">
                             <div class="row">
@@ -75,6 +75,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Lokasi</th>
+                                    <th>Alamat</th>
                                     <th>Tipe</th>
                                     <th>Tarif / jam</th>
                                     <th class="text-center">Opsi</th>
@@ -89,6 +90,7 @@
                                 <tr>
                                     <td><?= $row['id_lokasi'];?></td>
                                     <td><?= $row['nama_lokasi'];?></td>
+                                    <td><?= $row['alamat'];?></td>
                                     <td><?= ucwords($row['tipe']);?></td>
                                     <td><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?></td>
                                     <td class="text-center opsi">
@@ -133,6 +135,12 @@
                             <label for="nama_lokasi" class="col-sm-4 col-form-label">Nama Lokasi</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="nama_lokasi" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="alamat" rows="2" autocomplete="off" required></textarea>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -187,6 +195,12 @@
                                 <input type="text" class="form-control" name="nama_lokasi" value="<?= $row['nama_lokasi'];?>" autocomplete="off" required>
                             </div>
                         </div> 
+                        <div class="mb-3 row">
+                            <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="alamat" rows="2" autocomplete="off" required><?= $row['alamat'];?></textarea>
+                            </div>
+                        </div>
                         <div class="mb-3 row">
                             <label for="tipe" class="col-sm-4 col-form-label">Tipe</label>
                             <div class="col-sm-8">
@@ -244,6 +258,12 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="alamat" rows="2" readonly><?= $row['alamat'];?></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="tipe" class="col-sm-4 col-form-label">Tipe</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="tipe" value="<?= $row['tipe'];?>" readonly>
@@ -269,15 +289,6 @@
     }
     ?>
     
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <?php include "../component-admin/script.php"?>
 </body>
 </html>
