@@ -32,7 +32,7 @@
                                         </div>
                                         <div class="col-8 ml-4">
                                             <span><b>Tanggal</b></span><br/>
-                                            <span><?php echo date("d F Y", ); ?></span>
+                                            <span><?php echo date("d F Y"); ?></span>
                                         </div>
                                         
                                     </div>
@@ -59,7 +59,7 @@
                                 <div class="card-body text-center">
                                     <div class="card-title">
                                         <h5>Booking Parkir</h5>
-                                        <a type="button" class="btn btn-success mt-2">Book</a>
+                                        <a type="button" href="booking.php" class="btn btn-success mt-2">Book</a>
                                     </div>
                                 </div>
                             </div>

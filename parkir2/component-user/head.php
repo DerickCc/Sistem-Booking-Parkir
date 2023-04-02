@@ -14,7 +14,7 @@
         font-family: Arial;
     }
     body{
-        background: #E9E9E9;
+        background: #F5F5F5;
     }
     .card, .sb-sidenav{
         box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.12);
@@ -26,6 +26,18 @@
     }
     .bg-theme, .btn-theme{
         background: #194184;
+    }
+    .btn-theme:hover{
+        background: #133062;
+    }
+    .btn-theme:active{
+        background: #0d2245;
+    }
+    .book-link:hover{
+        opacity: 0.7;
+    }
+    hr{
+        border-bottom: 1px solid #000;
     }
 
 </style>

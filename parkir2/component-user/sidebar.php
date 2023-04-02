@@ -21,7 +21,6 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="berlangsung.php">Sedang Berlangsung</a>
                         <a class="nav-link" href="selesai.php">Telah Selesai</a>
-                        <a class="nav-link" href="cancel.php">Cancel</a>
                     </nav>
                 </div>            
             </div>

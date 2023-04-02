@@ -3,6 +3,7 @@ session_start();
 
 $conn = mysqli_connect("localhost", "root", "", "parkir");
 
+//data-pengguna
 //tambah pengguna
 if(isset($_POST['tambahPengguna'])){
     $nama_depan = $_POST['nama_depan'];
@@ -66,6 +67,7 @@ if(isset($_POST['cariNamaPengguna'])){
 }
 //--------------------------------------------------------------------------------//
 
+//data-lokasi
 //tambah lokasi
 if(isset($_POST['tambahLokasi'])){
     $nama_lokasi = $_POST['nama_lokasi'];
@@ -129,6 +131,7 @@ if(isset($_POST['cariNamaLokasi'])){
 }
 //--------------------------------------------------------------------------------//
 
+//detail-lokasi
 //tambah slot
 if(isset($_POST['tambahSlot'])){
     $id_lokasi = $_POST['id_lokasi'];
@@ -189,5 +192,34 @@ if(isset($_POST['cariNamaSlot'])){
     header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&nama_slot=' . $nama_slot);
 }
 
+//--------------------------------------------------------------------------------//
+// PENGGUNA
+
+//home
+//cari slot
+if(isset($_POST['cariLokasi'])){
+    $nama_lokasi = $_POST['nama_lokasi'];  
+    header('location:booking.php?nama_lokasi=' . $nama_lokasi);
+}
+
+//booking
+//book parkir
+if(isset($_POST['bookParkir'])){ 
+    // $id_pengguna = $_POST['id_pengguna'];
+    $id_pengguna = 1;
+    $id_slot = $_POST['id_slot'];
+    $no_plat = $_POST['no_plat'];
+    $tanggal = $_POST['tanggal'];
+    $waktu_masuk = $_POST['waktu_masuk'];
+
+    $insert = mysqli_query($conn, "INSERT INTO booking VALUES ('', '$id_pengguna', '$id_slot','$no_plat', '$tanggal', '$waktu_masuk', '', '', '', 'Booked')");
+
+    if($insert){
+        header('location:berlangsung.php');
+    }
+    else{
+        header('location:booking.php?status=0');
+    }
+}
 
 ?>

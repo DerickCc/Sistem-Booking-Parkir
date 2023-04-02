@@ -14,7 +14,7 @@
         font-family: Arial;
     }
     body{
-        background: #E9E9E9;
+        background: #F5F5F5;
     }
     .bg-theme{
         background: #194184;
