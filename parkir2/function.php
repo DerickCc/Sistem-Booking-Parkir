@@ -213,12 +213,44 @@ if(isset($_POST['bookParkir'])){
     $waktu_masuk = $_POST['waktu_masuk'];
 
     $insert = mysqli_query($conn, "INSERT INTO booking VALUES ('', '$id_pengguna', '$id_slot','$no_plat', '$tanggal', '$waktu_masuk', '', '', '', 'Booked')");
+    $update = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Unavailable' WHERE id_slot = '$id_slot'");
 
-    if($insert){
+    if($insert && $update){
         header('location:berlangsung.php');
     }
     else{
         header('location:booking.php?status=0');
+    }
+}
+
+//berlangsung
+//check-In booking
+if(isset($_POST['checkInBooking'])){
+    $id_booking = $_POST['id_booking'];
+    
+    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Parked' WHERE id_booking = '$id_booking'");
+
+    if($update){
+        header('location:berlangsung.php?status=1');
+    }
+    else{
+        header('location:berlangsung.php?status=0');
+    }
+}
+
+//cancel booking
+if(isset($_POST['cancelBooking'])){
+    $id_booking = $_POST['id_booking'];
+    $id_slot = $_POST['id_slot'];
+    
+    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Cancel' WHERE id_booking = '$id_booking'");
+    $update2 = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Available' WHERE id_slot = '$id_slot'");
+
+    if($update && $update2){
+        header('location:berlangsung.php?status=2');
+    }
+    else{
+        header('location:berlangsung.php?status=0');
     }
 }
 
