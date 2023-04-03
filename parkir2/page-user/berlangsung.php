@@ -37,6 +37,7 @@
                                                               INNER JOIN lokasi AS l ON dl.id_lokasi = l.id_lokasi
                                                               WHERE b.tanggal = '$tanggal' AND (b.status_booking = 'Booked' OR b.status_booking = 'Parked') AND b.id_pengguna = '1' ");
                         while($row2=mysqli_fetch_assoc($selectBooking)){
+                            $id_booking = $row2['id_booking'];
                         ?>
                         <div class="row mt-0">
                             <div class="col-1 bg-dark d-flex align-items-center justify-content-center">
@@ -45,7 +46,7 @@
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5><b><?= $row2['nama_lokasi'];?></b></h5>
+                                        <h5><b><?= $row2['nama_lokasi'];?><?= $id_booking;?></b></h5>
                                     </div>
                                     <div class="col-12">
                                         <b>Alamat:</b> <?= $row2['alamat'];?>
@@ -64,7 +65,7 @@
                             <div class="col-3 d-flex align-items-center justify-content-center">
                                 <form method="POST">
                                     <div class="row">
-                                        <input type="number" name="id_booking" value="<?= $row2['id_booking'];?>" hidden>
+                                        <input type="number" name="id_booking" value="<?= $id_booking;?>" >
                                         <input type="number" name="id_slot" value="<?= $row2['id_slot'];?>" hidden> 
                                         <?php 
                                         if($row2['status_booking'] == 'Booked'){
