@@ -46,7 +46,7 @@
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5><b><?= $row2['nama_lokasi'];?><?= $id_booking;?></b></h5>
+                                        <h5><b><?= $row2['nama_lokasi'];?></b></h5>
                                     </div>
                                     <div class="col-12">
                                         <b>Alamat:</b> <?= $row2['alamat'];?>
@@ -65,42 +65,22 @@
                             <div class="col-3 d-flex align-items-center justify-content-center">
                                 <form method="POST">
                                     <div class="row">
-                                        <input type="number" name="id_booking" value="<?= $id_booking;?>" >
+                                        <input type="number" name="id_booking" value="<?= $id_booking;?>" hidden>
                                         <input type="number" name="id_slot" value="<?= $row2['id_slot'];?>" hidden> 
                                         <?php 
                                         if($row2['status_booking'] == 'Booked'){
                                             echo '
                                             <button class="btn btn-success my-1" name="checkInBooking">Check-In</button>
-                                            <a href="#" role="button" class="btn btn-danger my-1" data-bs-toggle="modal" data-bs-target="#yesCancel">Cancel</a>';
+                                            <button class="btn btn-danger my-1" name="cancelBooking">Cancel</button>';
                                         }
                                         else{
                                             echo '
                                             <button class="btn btn-warning my-1 font-weight-bold" name="checkOutBooking">Check-Out</button>';
                                         }
                                         ?>
-
-                                        <div class="modal fade" id="yesCancel" aria-labelledby="yesCancel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-danger text-white">
-                                                        <h4 class="modal-title">Cancel Booking</h4>
-                                                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h5>Anda yakin ingin meng-cancel booking ini?</h5>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-success" name="cancelBooking" value="cancelBooking">Yakin</button>
-                                                        <button class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </form>
                             </div>
-                            
                         </div>
                         <hr class="mb-3" />
                         <?php
@@ -112,11 +92,27 @@
                 }
                 ?>
             </div>    
-        
-            
         </div>
-        
     </div>
+
+    <!-- <button type="button" class="btn btn-danger my-1" data-bs-toggle="modal" data-bs-target="#yesCancel">Cancel</button>
+    <div class="modal fade" id="yesCancel" aria-labelledby="yesCancel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h4 class="modal-title">Cancel Booking</h4>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Anda yakin ingin meng-cancel booking ini?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" name="cancelBooking" value="cancelBooking">Yakin</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
     
     <?php include "../component-user/script.php"?>
 </body>
