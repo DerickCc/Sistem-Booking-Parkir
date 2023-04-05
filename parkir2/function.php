@@ -243,11 +243,44 @@ if(isset($_POST['cancelBooking'])){
     $id_booking = $_POST['id_booking'];
     $id_slot = $_POST['id_slot'];
     
-    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Cancel' WHERE id_booking = '$id_booking'");
+    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Cancel', waktu_keluar = NULL, biaya = NULL, metode_bayar = NULL
+                                   WHERE id_booking = '$id_booking'");
     $update2 = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Available' WHERE id_slot = '$id_slot'");
 
     if($update && $update2){
         header('location:berlangsung.php?status=2');
+    }
+    else{
+        header('location:berlangsung.php?status=0');
+    }
+}
+
+//check-Out booking
+if(isset($_POST['checkOutBooking'])){
+    $id_booking = $_POST['id_booking'];
+    $id_slot = $_POST['id_slot'];
+    $tarif = $_POST['tarif'];
+    $waktu_masuk = $_POST['waktu_masuk'];
+
+    date_default_timezone_set ("Asia/Jakarta");
+    $waktu_keluar = date("H:i");
+
+    $jam = (int)substr($waktu_keluar,0,2) - (int)substr($waktu_masuk,0,2);
+    $mnt = (int)substr($waktu_keluar,-2) - (int)substr($waktu_masuk,-2);
+    $durasi = $jam . " jam " . $mnt . " menit";
+    // echo $time_out - $time_in;
+    if($mnt>0){
+        $biaya = ($jam + 1) * $tarif ;
+    }
+    else{
+        $biaya = $jam * $tarif;
+    }
+    
+    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Finish', waktu_keluar = '$waktu_keluar', biaya = $biaya, durasi = '$durasi' WHERE id_booking = '$id_booking'");
+    $update2 = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Available' WHERE id_slot = '$id_slot'");
+
+    if($update && $update2){
+        header('location:selesai.php?id_booking='.$id_booking);
     }
     else{
         header('location:berlangsung.php?status=0');

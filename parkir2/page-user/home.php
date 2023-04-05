@@ -69,7 +69,7 @@
                                 <div class="card-body text-center">
                                     <div class="card-title">
                                         <h5>Lihat Riwayat Booking</h5>
-                                        <a type="button" class="btn btn-warning mt-2">Riwayat</a>
+                                        <a type="button" href="berlangsung.php" class="btn btn-warning mt-2">Riwayat</a>
                                     </div>
                                 </div>
                             </div>

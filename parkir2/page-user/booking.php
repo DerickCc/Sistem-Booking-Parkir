@@ -65,24 +65,24 @@
                 <!-- rekomen -->
                 <div class="card-group col-10 mt-2 mx-auto px-0">
                     <div class="card col-4 px-0 mr-2">
-                        <img src="../img/city.jpg" class="card-img-top w-100" style="height: 200px;" alt="...">
+                        <img src="../img/semarang.jpg" class="card-img-top w-100" style="height: 200px;" alt="...">
                         <div class="card-body text-center">
-                            <h5><b>Asia Mega Mas</b></h5>
+                            <h5><b>Semarang</b></h5>
                             <span>Salah satu tempat kuliner Medan yang populer di semua kalangan. Tempat ini terkenal akan makanan-makanan Chinese yang tidak halal dan mengandung babi.</span>
                         </div>
                     </div>
                     <div class="card col-4 px-0 mx-2">
-                        <img src="../img/city.jpg" class="card-img-top w-100" style="height: 200px;" alt="...">
+                        <img src="../img/vihara.jpg" class="card-img-top w-100" style="height: 200px;" alt="...">
                         <div class="card-body text-center">
-                            <h5><b>Cemara Asri</b></h5>
-                            <span>Komplek besar ini memiliki fasilitas dan hiburan yang lengkap, mulai dari kolam renang, lapangan basket, sekolah, tempat beribadah, tempat makan, bahkan hotel juga ada.</span>
+                            <h5><b>Vihara Maitreya</b></h5>
+                            <span>Jarang beribadah? Merasa dosa sudah terlalu menumpuk? Bagi umat Buddha, Anda bisa kunjungi Vihara Maitreya yang terletak di dalam Komplek Cemara Asri ini. Ibadah di sini sekali, dijamin auto suci.</span>
                         </div>
                     </div>
                     <div class="card col-4 px-0 ml-2">
-                        <img src="../img/city.jpg" class="card-img-top w-100" style="height: 200px;" alt="...">
+                        <img src="../img/metropawllys.jpeg" class="card-img-top w-100" style="height: 200px;" alt="...">
                         <div class="card-body text-center">
-                            <h5><b>Metropawlis</b></h5>
-                            <span>Metropawlis adalah cafe anjing, dimana Anda dapat makan sekaligus bermain dengan anjing-anjing lucu di sana. Pilihan makanan juga beragam dan tidak kalah enak dengan cafe-cafe lainnya.</span>
+                            <h5><b>Metropawllys</b></h5>
+                            <span>Metropawllys adalah cafe anjing, dimana Anda dapat makan sekaligus bermain dengan anjing-anjing lucu di sana. Pilihan makananny juga beragam dan tidak kalah enak dengan cafe-cafe lainnya, ada makanan khusus untuk anjing juga lohh.</span>
                         </div>
                     </div>
                 </div> 

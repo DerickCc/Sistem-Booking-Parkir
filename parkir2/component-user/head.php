@@ -17,9 +17,9 @@
         background: #F5F5F5;
     }
     .card, .sb-sidenav{
-        box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.12);
-        -webkit-box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.12);
-        -moz-box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.12);
+        box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.15);
+        -webkit-box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.15);
+        -moz-box-shadow: 1px 3px 48px -7px rgba(0,0,0,0.15);
     }
     .card{
         border-radius: 7px;
@@ -32,6 +32,9 @@
     }
     .btn-theme:active{
         background: #0d2245;
+    }
+    .bg-cancel{
+        background: #DCDCDC;
     }
     .book-link:hover{
         opacity: 0.7;
