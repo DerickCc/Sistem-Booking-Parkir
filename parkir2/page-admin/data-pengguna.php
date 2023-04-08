@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <!-- Alert -->
+                        <!-- Toast -->
                         <?php
                             if(empty($_REQUEST['status'])){
                                 echo "";
@@ -77,8 +77,10 @@
                                     <th>Nama Depan</th>
                                     <th>Nama Belakang</th>
                                     <th>Email</th>
-                                    <th>No. Telepon</th>
+                                    <th>No. Telp</th>
+                                    <th>E-Money</th>
                                     <th>Password</th>
+                                    <th>Role</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
@@ -94,7 +96,9 @@
                                     <td><?= $row['nama_belakang'];?></td>
                                     <td><?= $row['email'];?></td>
                                     <td><?= $row['no_telp'];?></td>
+                                    <td><?= "Rp " . number_format($row['e_money'], 2, ",", ".");?></td>
                                     <td><?= $row['password'];?></td>
+                                    <td><?= $row['role'];?></td>
                                     <td class="text-center opsi">
                                         <!-- detail -->
                                         <!-- <button type="button" class="btn btn-primary">
@@ -154,13 +158,29 @@
                         <div class="mb-3 row">
                             <label for="no_telp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="no_telp" autocomplete="off" required>
+                                <input type="text" class="form-control" name="no_telp" autocomplete="off" required
+                                pattern="[0-9]+" maxlength=12>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="e_money" class="col-sm-4 col-form-label">E-Money</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="e_money" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="password" class="col-sm-4 col-form-label">Password</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="password" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="role" class="col-sm-4 col-form-label">Role</label>
+                            <div class="col-sm-8">
+                                <select class="form-select" name="role" required>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -215,13 +235,37 @@
                         <div class="mb-3 row">
                             <label for="no_telp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="no_telp" value="<?= $row['no_telp'];?>" autocomplete="off" required>
+                                <input type="text" class="form-control" name="no_telp" value="<?= $row['no_telp'];?>" autocomplete="off" required
+                                pattern="[0-9]+" maxlength=12>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="e_money" class="col-sm-4 col-form-label">E-Money</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="e_money" value="<?= $row['e_money'];?>" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="password" class="col-sm-4 col-form-label">Password</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="password" value="<?= $row['password'];?>" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="role" class="col-sm-4 col-form-label">Role</label>
+                            <div class="col-sm-8">
+                                <select class="form-select" name="role" required>
+                                    <?php 
+                                    if($row['role'] == '0'){
+                                        echo "<option selected value='0'>0</option>
+                                        <option value='1'>1</option>";
+                                    }
+                                    else{
+                                        echo "<option value='0'>0</option>
+                                        <option selected value='1'>1</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -275,9 +319,21 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label for="e_money" class="col-sm-4 col-form-label">E-Money</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="e_money" value="<?= $row['e_money'];?>" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="password" class="col-sm-4 col-form-label">Password</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="password" value="<?= $row['password'];?>" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="role" class="col-sm-4 col-form-label">Role</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="role" value="<?= $row['role'];?>" readonly>
                             </div>
                         </div>
                     </div>

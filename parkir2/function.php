@@ -3,6 +3,20 @@ session_start();
 
 $conn = mysqli_connect("localhost", "root", "", "parkir");
 
+$id_pengguna = NULL;
+$nama_depan = NULL;
+if(isset($_SESSION['id_pengguna'])){
+    $id_pengguna = $_SESSION['id_pengguna'];
+    $nama_depan = $_SESSION['nama_depan'];
+}
+else{
+    die('Anda Tidak Memiliki Akses!');
+}
+
+$selectE_Money = mysqli_query($conn, "SELECT e_money FROM pengguna WHERE id_pengguna = '$id_pengguna'");
+$row = mysqli_fetch_row($selectE_Money);
+$e_money = $row[0];
+
 //data-pengguna
 //tambah pengguna
 if(isset($_POST['tambahPengguna'])){
@@ -11,8 +25,10 @@ if(isset($_POST['tambahPengguna'])){
     $email = $_POST['email'];
     $no_telp = $_POST['no_telp'];
     $password = $_POST['password'];
+    $e_money = $_POST['e_money'];
+    $role = $_POST['role'];
 
-    $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '$password')");
+    $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '$e_money', '$password', '$role' )");
 
     if($insert){
         header('location:data-pengguna.php?status=1');
@@ -30,13 +46,17 @@ if(isset($_POST['editPengguna'])){
     $email = $_POST['email'];
     $no_telp = $_POST['no_telp'];
     $password = $_POST['password'];
+    $e_money = $_POST['e_money'];
+    $role = $_POST['role'];
 
     $update = mysqli_query($conn, "UPDATE pengguna SET 
     nama_depan='$nama_depan', 
     nama_belakang='$nama_belakang', 
     email='$email', 
     no_telp='$no_telp',
-    password='$password' WHERE id_pengguna = '$id_pengguna'");
+    e_money='$e_money',
+    password='$password',
+    role='$role' WHERE id_pengguna = '$id_pengguna'");
 
     if($update){
         header('location:data-pengguna.php?status=2');
@@ -206,13 +226,13 @@ if(isset($_POST['cariLokasi'])){
 //book parkir
 if(isset($_POST['bookParkir'])){ 
     // $id_pengguna = $_POST['id_pengguna'];
-    $id_pengguna = 1;
+    // $id_pengguna = 1;
     $id_slot = $_POST['id_slot'];
     $no_plat = $_POST['no_plat'];
     $tanggal = $_POST['tanggal'];
     $waktu_masuk = $_POST['waktu_masuk'];
 
-    $insert = mysqli_query($conn, "INSERT INTO booking VALUES ('', '$id_pengguna', '$id_slot','$no_plat', '$tanggal', '$waktu_masuk', '', '', '', 'Booked')");
+    $insert = mysqli_query($conn, "INSERT INTO booking VALUES ('', '$id_pengguna', '$id_slot','$no_plat', '$tanggal', '$waktu_masuk', '', '', '', '', 'Booked')");
     $update = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Unavailable' WHERE id_slot = '$id_slot'");
 
     if($insert && $update){
@@ -243,7 +263,7 @@ if(isset($_POST['cancelBooking'])){
     $id_booking = $_POST['id_booking'];
     $id_slot = $_POST['id_slot'];
     
-    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Cancel', waktu_keluar = NULL, biaya = NULL, metode_bayar = NULL
+    $update = mysqli_query($conn, "UPDATE booking SET status_booking = 'Cancel', waktu_keluar = NULL, durasi = NULL, metode_bayar = NULL
                                    WHERE id_booking = '$id_booking'");
     $update2 = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Available' WHERE id_slot = '$id_slot'");
 
@@ -280,11 +300,29 @@ if(isset($_POST['checkOutBooking'])){
     $update2 = mysqli_query($conn, "UPDATE detail_lokasi SET status_slot = 'Available' WHERE id_slot = '$id_slot'");
 
     if($update && $update2){
-        header('location:selesai.php?id_booking='.$id_booking);
+        header('location:selesai.php?status=1');
     }
     else{
         header('location:berlangsung.php?status=0');
     }
 }
 
+//Selesai
+//bayar Parkir
+if(isset($_POST['bayarParkir'])){
+    $id_booking = $_POST['id_booking'];
+    // $id_pengguna = $_POST['id_pengguna'];
+    $metode_bayar = $_POST['metode_bayar'];
+    $e_money = $_POST['e_money'];
+    $biaya = $_POST['biaya'];
+
+    $update = mysqli_query($conn, "UPDATE booking SET metode_bayar = '$metode_bayar' WHERE id_booking = '$id_booking'");
+    $update2 = NULL;
+
+    if($metode_bayar == 'E-money'){
+        $update2 = mysqli_query($conn, "UPDATE pengguna SET e_money = $e_money - $biaya WHERE id_pengguna = '$id_pengguna'");
+    }
+
+    header('location:selesai.php?status=2');
+}
 ?>

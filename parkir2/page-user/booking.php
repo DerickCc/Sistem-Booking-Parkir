@@ -37,6 +37,16 @@
                 <?php
                 $nama_lokasi = empty($_REQUEST['nama_lokasi']) ? '....' : $_REQUEST['nama_lokasi'];
                 $selectLokasi = mysqli_query($conn, "SELECT * FROM lokasi WHERE nama_lokasi LIKE '%$nama_lokasi%' OR alamat LIKE '%$nama_lokasi%'");
+                if(mysqli_num_rows($selectLokasi) == 0 && !empty($_REQUEST['nama_lokasi'])){
+                ?>
+                <div class="col-10 mx-auto px-0">
+                    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <i class='fa-solid fa-circle-xmark mr-2'></i> Tidak ada lokasi yang ditemukan.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>
+                </div>
+                <?php
+                }
                 while($row=mysqli_fetch_assoc($selectLokasi)){
                 ?>
                 <div class="card col-10 mx-auto px-0 mb-3">

@@ -1,4 +1,4 @@
-<?php include "../function.php" ?>
+<?php include "../function.php";?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +14,14 @@
         <?php include "../component-user/sidebar.php"?>
 
         <div id="layoutSidenav_content">
-            <div class="row mt-3">
+            <div class="row mt-3 ml-2">
                 <div class="col-5">
                     <!-- Card Selamat datang -->
                     <div class="row mt-0">
                         <div class="card">
                             <div class="card-body ml-3">
                                 <div class="card-title">
-                                    <h4>Hi, Selamat Datang ~NamaDepan~ <i class="fa-solid fa-hand-peace ml-1" style="color: #ffb000;"></i></h4>
+                                    <h4 class="font-weight-bold">Hi, selamat datang <?= ucwords($nama_depan);?><i class="fa-solid fa-hand-peace ml-1" style="color: #ffb000;"></i></h4>
                                 </div>
                                 <div class="card-text mt-3">
                                     <div class="row">
@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-8 ml-4">
                                             <span><b>Saldo E-money</b></span><br/>
-                                            <span>Rp 1.000.000,00</span>
+                                            <span><?= "Rp " . number_format($e_money, 2, ",", ".");?></span>
                                         </div>
                                     </div>
                                 </div>
