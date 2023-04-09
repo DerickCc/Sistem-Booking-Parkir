@@ -140,7 +140,8 @@
                         <div class="mb-3 row">
                             <label for="no_plat" class="col-sm-5 col-form-label">No Plat</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="no_plat" autocomplete="off" required>
+                                <input type="text" class="form-control" name="no_plat" autocomplete="off" required
+                                pattern="[A-Z]{1,2} [0-9]{1,4} [A-Z]{1,3}">
                             </div>
                         </div>
                         <div class="mb-3 row">

@@ -37,8 +37,8 @@
                     }
                 ?>
                 </div>
-                <div class="card col-10 mx-auto ">
-                    <div class="card-header py-0 pt-3 pb-2">
+                <div class="card col-10 mx-auto px-0">
+                    <div class="card-header py-0 pt-3 pb-2 bg-theme text-white">
                         <h3>Profile</h3>
                     </div>
                     <div class="card-body">
@@ -67,24 +67,24 @@
                                     <div class="row">
                                         <div class="col-11 mb-2">
                                             <label for="nama_depan" class="form-label">Nama Depan</label>
-                                            <input type="text" class="form-control" name="nama_depan" value="<?= $nama_depan;?>" <?= $readonly;?>>
+                                            <input type="text" class="form-control" name="nama_depan" value="<?= $nama_depan;?>" <?= $readonly;?> required>
                                         </div>
                                         <div class="col-11 mb-2">
                                             <label for="nama_belakang" class="form-label">Nama Belakang</label>
-                                            <input type="text" class="form-control" name="nama_belakang" value="<?= $nama_belakang;?>" <?= $readonly;?>>
+                                            <input type="text" class="form-control" name="nama_belakang" value="<?= $nama_belakang;?>" <?= $readonly;?> required>
                                         </div>
                                         <div class="col-11 mb-2">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" name="email" value="<?= $email;?>" <?= $readonly;?>>
+                                            <input type="email" class="form-control" name="email" value="<?= $email;?>" <?= $readonly;?> required>
                                         </div>
                                         <div class="col-11 mb-2">
                                             <label for="no_telp" class="form-label">No. Telepon</label>
-                                            <input type="text" class="form-control" name="no_telp" value="<?= $no_telp;?>" <?= $readonly;?>
+                                            <input type="text" class="form-control" name="no_telp" value="<?= $no_telp;?>" <?= $readonly;?> required
                                             pattern="[0-9]+" maxlength=12 minlength=10>
                                         </div>
                                         <div class="col-11 mb-2">
                                             <label for="password" class="form-label">Password</label>
-                                            <input type="password" class="form-control" name="password" value="<?= $password;?>" <?= $readonly;?>>
+                                            <input type="password" class="form-control" name="password" value="<?= $password;?>" <?= $readonly;?> required>
                                         </div>
                                     </div>
                                 </div>

@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-1">
-                                            <a type="button" class="btn btn-info mt-1" style="width: 45px">
+                                            <a href="topup.php" type="button" class="btn btn-info mt-1" style="width: 45px">
                                                 <i class="fa fa-credit-card"></i>
                                             </a>
                                         </div>

@@ -115,8 +115,17 @@
                                             <input type="text" name="waktu_masuk" value="<?= $row2['waktu_masuk'];?>" hidden> 
                                             <?php 
                                             if($row2['status_booking'] == 'Booked'){
+                                                date_default_timezone_set ("Asia/Jakarta");
+                                                $sekarang = date("H:i");
+                                                $jam = (int)substr($sekarang,0,2) - (int)substr($row2['waktu_masuk'],0,2);
+                                                $menit = (int)substr($sekarang,-2) - (int)substr($row2['waktu_masuk'],-2);
+                                                $disabled = "";
+                                                if($jam < 0 || ($jam == 0 && $menit < 0)){
+                                                    $disabled = "disabled";
+                                                }
+
                                                 echo ' 
-                                                <button class="btn btn-info my-1" name="checkInBooking">Check-In</button>
+                                                <button class="btn btn-info my-1" name="checkInBooking"'. $disabled .'>Check-In</button>
                                                 <button type="button" class="btn btn-danger my-1" data-bs-toggle="modal" data-bs-target="#modalCancel'. $id_booking.'">Cancel</button>
                                                 
                                                 <div class="modal fade" id="modalCancel'. $id_booking.'" aria-labelledby="yesCancel" aria-hidden="true">

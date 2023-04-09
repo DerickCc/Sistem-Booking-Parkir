@@ -242,6 +242,20 @@ if(isset($_POST['simpanProfile'])){
     }
 }
 
+//topup
+if(isset($_POST['topUp'])){
+    $nominal = $_POST['nominal'];
+
+    $update = mysqli_query($conn, "UPDATE pengguna SET e_money = $e_money + $nominal WHERE id_pengguna = '$id_pengguna'");
+
+    if($update){
+        header('location:topup.php?status=1');
+    }
+    else{
+        header('location:topup.php?status=0');
+    }
+}
+
 //booking
 //cari slot
 if(isset($_POST['cariLokasi'])){
@@ -312,10 +326,10 @@ if(isset($_POST['checkOutBooking'])){
     $waktu_keluar = date("H:i");
 
     $jam = (int)substr($waktu_keluar,0,2) - (int)substr($waktu_masuk,0,2);
-    $mnt = (int)substr($waktu_keluar,-2) - (int)substr($waktu_masuk,-2);
-    $durasi = $jam . " jam " . $mnt . " menit";
+    $menit = (int)substr($waktu_keluar,-2) - (int)substr($waktu_masuk,-2);
+    $durasi = $jam . " jam " . $menit . " menit";
     // echo $time_out - $time_in;
-    if($mnt>0){
+    if($menit>0){
         $biaya = ($jam + 1) * $tarif ;
     }
     else{
@@ -351,4 +365,5 @@ if(isset($_POST['bayarParkir'])){
 
     header('location:selesai.php?status=2');
 }
+
 ?>

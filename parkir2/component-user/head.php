@@ -14,6 +14,7 @@
 </head>
 <style>
     body{
+        font-family: Nunito;
         background: #F5F5F5;
     }
     .card, .sb-sidenav{
