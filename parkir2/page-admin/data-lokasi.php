@@ -75,7 +75,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Lokasi</th>
-                                    <th>Alamat</th>
+                                    <th style="width: 500px;">Alamat</th>
                                     <th>Tipe</th>
                                     <th>Tarif / jam</th>
                                     <th class="text-center">Opsi</th>

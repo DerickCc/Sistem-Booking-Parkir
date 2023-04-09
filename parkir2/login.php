@@ -40,7 +40,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($jmlhRow > 0){ 
         if($row["email"] == $email && $row["password"] == $password){
             $_SESSION['id_pengguna'] = $row['id_pengguna'];
-            $_SESSION['nama_depan'] = $row['nama_depan'];
             $_SESSION['role'] = $row['role'];
 
             if($row['role'] == 0){
@@ -48,7 +47,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } else if($row['role'] == 1) {
                 header("location: page-admin/data-lokasi.php");
             }
-            
         } 
     } else {
         $cek = false;

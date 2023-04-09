@@ -29,6 +29,7 @@
     }
     .btn-theme:hover{
         background: #133062;
+        transition: .15s;
     }
     .btn-theme:active{
         background: #0d2245;
@@ -38,7 +39,8 @@
         opacity: 0.7;
     }
     .book-link:hover{
-        opacity: 0.7;
+        background-color: rgba(0,0,0,0.1);
+        transition: .15s;
     }
     hr{
         border-bottom: 1px solid #000;

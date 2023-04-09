@@ -159,7 +159,7 @@
                             <label for="no_telp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="no_telp" autocomplete="off" required
-                                pattern="[0-9]+" maxlength=12>
+                                pattern="[0-9]+" minlength=10 maxlength=12>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -236,7 +236,7 @@
                             <label for="no_telp" class="col-sm-4 col-form-label">No. Telepon</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="no_telp" value="<?= $row['no_telp'];?>" autocomplete="off" required
-                                pattern="[0-9]+" maxlength=12>
+                                pattern="[0-9]+" minlength=10 maxlength=12>
                             </div>
                         </div>
                         <div class="mb-3 row">

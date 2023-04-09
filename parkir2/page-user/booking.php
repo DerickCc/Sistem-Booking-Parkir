@@ -49,7 +49,7 @@
                 }
                 while($row=mysqli_fetch_assoc($selectLokasi)){
                 ?>
-                <div class="card col-10 mx-auto px-0 mb-3">
+                <div class="card col-10 mx-auto px-0 mb-3 book-link">
                     <div class="card-header text-white bg-theme py-0 pt-2">
                         <h5><?= $row['nama_lokasi'];?></h5>
                     </div>
@@ -65,7 +65,7 @@
                                 <b class="mr-4">Tipe</b>: <?= ucwords($row['tipe']);?>
                             </div>
                         </div>
-                        <a href="#" class="stretched-link book-link"  data-bs-toggle="modal" data-bs-target="#book<?= $row['id_lokasi']?>"></a>
+                        <a href="#" class="stretched-link"  data-bs-toggle="modal" data-bs-target="#book<?= $row['id_lokasi']?>"></a>
                     </div>
                 </div>
                 <?php

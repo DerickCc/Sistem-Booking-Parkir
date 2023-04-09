@@ -4,18 +4,21 @@ session_start();
 $conn = mysqli_connect("localhost", "root", "", "parkir");
 
 $id_pengguna = NULL;
-$nama_depan = NULL;
 if(isset($_SESSION['id_pengguna'])){
     $id_pengguna = $_SESSION['id_pengguna'];
-    $nama_depan = $_SESSION['nama_depan'];
 }
 else{
     die('Anda Tidak Memiliki Akses!');
 }
 
-$selectE_Money = mysqli_query($conn, "SELECT e_money FROM pengguna WHERE id_pengguna = '$id_pengguna'");
+$selectE_Money = mysqli_query($conn, "SELECT nama_depan, nama_belakang, email, no_telp, password, e_money FROM pengguna WHERE id_pengguna = '$id_pengguna'");
 $row = mysqli_fetch_row($selectE_Money);
-$e_money = $row[0];
+$nama_depan = $row[0];
+$nama_belakang = $row[1];
+$email = $row[2];
+$no_telp = $row[3];
+$password = $row[4];
+$e_money = $row[5];
 
 //data-pengguna
 //tambah pengguna
@@ -215,14 +218,37 @@ if(isset($_POST['cariNamaSlot'])){
 //--------------------------------------------------------------------------------//
 // PENGGUNA
 
-//home
+//profile
+//simpan profile
+if(isset($_POST['simpanProfile'])){
+    $nama_depan = $_POST['nama_depan'];
+    $nama_belakang = $_POST['nama_belakang'];
+    $email = $_POST['email'];
+    $no_telp = $_POST['no_telp'];
+    $password = $_POST['password'];
+
+    $update = mysqli_query($conn, "UPDATE pengguna SET 
+    nama_depan='$nama_depan', 
+    nama_belakang='$nama_belakang', 
+    email='$email', 
+    no_telp='$no_telp',
+    password='$password' WHERE id_pengguna = '$id_pengguna'");
+
+    if($update){
+        header('location:profile.php?status=1');
+    }
+    else{
+        header('location:profile.php?status=0');
+    }
+}
+
+//booking
 //cari slot
 if(isset($_POST['cariLokasi'])){
     $nama_lokasi = $_POST['nama_lokasi'];  
     header('location:booking.php?nama_lokasi=' . $nama_lokasi);
 }
 
-//booking
 //book parkir
 if(isset($_POST['bookParkir'])){ 
     // $id_pengguna = $_POST['id_pengguna'];

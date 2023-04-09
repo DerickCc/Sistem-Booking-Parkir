@@ -93,7 +93,7 @@ if(isset($_POST["register"])){
                                 </div>
                                 <div class="form-group <?= $was_validated;?>">
                                     <label for="no_telp" class="form-label">No. Telepon</label>
-                                    <input type="text" name="no_telp" class="form-control form-control-user" id="no_telp" required pattern="[0-9]+" maxlength=12
+                                    <input type="text" name="no_telp" class="form-control form-control-user" id="no_telp" required pattern="[0-9]+" minlength=10 maxlength=12
                                     style="border-radius: 7px;" placeholder="No. Telepon">
                                     <div class="invalid-feedback">Mohon meng-input no. telepon Anda</div>
                                 </div>
