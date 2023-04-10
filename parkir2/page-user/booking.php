@@ -1,4 +1,4 @@
-<?php include "../function.php" ?>
+<?php include "../function.php";?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,9 +48,20 @@
                 <?php
                 }
                 while($row=mysqli_fetch_assoc($selectLokasi)){
+                    $cekSlot = mysqli_query($conn, "SELECT id_slot FROM detail_lokasi WHERE id_lokasi = ".$row['id_lokasi']." AND status_slot = 'Available'");
+                    $hide = "";
+                    $link = "book-link";
+                    $bg = "bg-theme";
+                    $opacity = 1;
+                    if(mysqli_num_rows($cekSlot) == 0){
+                        $hide = "hidden";
+                        $link = "";
+                        $bg = "bg-secondary";
+                        $opacity = 0.7;
+                    }
                 ?>
-                <div class="card col-10 mx-auto px-0 mb-3 book-link">
-                    <div class="card-header text-white bg-theme py-0 pt-2">
+                <div class="card col-10 mx-auto px-0 mb-3 <?= $link;?>" style="opacity: <?= $opacity;?>">
+                    <div class="card-header text-white <?= $bg;?> py-0 pt-2">
                         <h5><?= $row['nama_lokasi'];?></h5>
                     </div>
                     <div class="card-body py-0 py-2">
@@ -65,7 +76,7 @@
                                 <b class="mr-4">Tipe</b>: <?= ucwords($row['tipe']);?>
                             </div>
                         </div>
-                        <a href="#" class="stretched-link"  data-bs-toggle="modal" data-bs-target="#book<?= $row['id_lokasi']?>"></a>
+                        <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#book<?= $row['id_lokasi']?>" <?= $hide;?>></a>
                     </div>
                 </div>
                 <?php
@@ -120,19 +131,39 @@
                             <h3 class="font-weight-bold"><?= $row['nama_lokasi'];?></h3>
                         </div>
 
-                        <!-- <input type="number" name="id_slot" value="<?= $row["id_pengguna"]?>" hidden> -->
+                        <?php
+                        // if($row['tipe'] == 'gedung'){
+                        ?>
+                        <!-- <div class="mb-3 row">
+                            <label for="id_slot" class="col-sm-5 col-form-label">Lantai</label>
+                            <div class="col-sm-7">
+                                <select class="form-select" id="lantai" required>
+                                    <?php
+                                    // $selectLantai = mysqli_query($conn, "SELECT lantai FROM detail_lokasi WHERE id_lokasi='$id_lokasi' AND status_slot = 'Available' GROUP BY lantai ORDER BY lantai");
+                                    // while($row=mysqli_fetch_assoc($selectLantai)){
+                                    ?>
+                                    <option value="<?= $row['lantai'];?>"> <?= $row['lantai'];?> </option>
+                                    <?php
+                                    // };
+                                    ?>
+                                </select>
+                            </div>
+                        </div> -->
+                        <?php
+                        // }
+                        ?>
 
                         <div class="mb-3 row">
                             <label for="id_slot" class="col-sm-5 col-form-label">Slot</label>
                             <div class="col-sm-7">
                                 <select class="form-select" name="id_slot" required>
                                     <?php
-                                    $selectSlot = mysqli_query($conn, "SELECT * FROM detail_lokasi WHERE id_lokasi='$id_lokasi' AND status_slot = 'Available'");
+                                    $selectSlot = mysqli_query($conn, "SELECT id_slot, nama_slot FROM detail_lokasi WHERE id_lokasi='$id_lokasi' AND status_slot = 'Available'");
                                     while($row=mysqli_fetch_assoc($selectSlot)){
                                     ?>
                                     <option value="<?= $row['id_slot'];?>"> <?= $row['nama_slot'];?> </option>
                                     <?php
-                                    };
+                                    }
                                     ?>
                                 </select>
                             </div>

@@ -19,9 +19,9 @@
                 </a>
                 <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="berlangsung.php">Laporan Keuangan</a>
-                        <a class="nav-link" href="selesai.php">Laporan Ini</a>
-                        <a class="nav-link" href="cancel.php">Laporan Anu</a>
+                        <a class="nav-link" href="#">Laporan Keuangan</a>
+                        <a class="nav-link" href="#">Laporan Ini</a>
+                        <a class="nav-link" href="#">Laporan Anu</a>
                     </nav>
                 </div>            
             </ul>
