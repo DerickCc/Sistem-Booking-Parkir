@@ -74,7 +74,7 @@
                                         <div class="col-6">
                                             <input type="text" class="form-control" name="no_kartu" required
                                             pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength=19>
-                                            <span class="small text-muted">Format: xxxx xxxx xxxx</span>
+                                            <span class="small text-muted">Format: xxxx xxxx xxxx xxxx</span>
                                         </div>
                                     </div>
                                 </div>

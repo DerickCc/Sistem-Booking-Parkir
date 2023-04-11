@@ -95,10 +95,11 @@ if(isset($_POST['cariNamaPengguna'])){
 if(isset($_POST['tambahLokasi'])){
     $nama_lokasi = $_POST['nama_lokasi'];
     $alamat = $_POST['alamat'];
+    $jam_operasional = $_POST['jam_operasional'];
     $tipe = $_POST['tipe'];
     $tarif = $_POST['tarif'];
 
-    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$alamat', '$tipe', '$tarif')");
+    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$alamat', '$jam_operasional', '$tipe', '$tarif')");
 
     if($insert){
         header('location:data-lokasi.php?status=1');
@@ -113,12 +114,14 @@ if(isset($_POST['editLokasi'])){
     $id_lokasi = $_POST['id_lokasi'];
     $nama_lokasi = $_POST['nama_lokasi'];
     $alamat = $_POST['alamat'];
+    $jam_operasional = $_POST['jam_operasional'];
     $tipe = $_POST['tipe'];
     $tarif = $_POST['tarif'];
 
     $update = mysqli_query($conn, "UPDATE lokasi SET
     nama_lokasi='$nama_lokasi',
     alamat='$alamat',
+    jam_operasional='$jam_operasional',
     tipe='$tipe',
     tarif='$tarif' WHERE id_lokasi='$id_lokasi'");
 

@@ -12,7 +12,11 @@
                     &nbsp;&nbsp;Data Pengguna
                 </a>
                 
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="../page-admin/laporan.php">
+                <i class="fa-solid fa-file-invoice fa-lg pl-1" style="width: 25px"></i>
+                    &nbsp;&nbsp;Laporan
+                </a>
+                <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
                 <i class="fa-solid fa-file-invoice fa-lg pl-1" style="width: 25px"></i>
                     &nbsp;&nbsp;Laporan
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -23,7 +27,7 @@
                         <a class="nav-link" href="#">Laporan Ini</a>
                         <a class="nav-link" href="#">Laporan Anu</a>
                     </nav>
-                </div>            
+                </div>             -->
             </ul>
         </div>
         <div class="sb-sidenav-footer">

@@ -117,6 +117,7 @@
     $selectLokasi = mysqli_query($conn, "SELECT * FROM lokasi WHERE nama_lokasi LIKE '%$nama_lokasi%' OR alamat LIKE '%$nama_lokasi%'");
     while($row=mysqli_fetch_assoc($selectLokasi)){
         $id_lokasi = $row['id_lokasi'];
+
     ?>
     <div class="modal fade" id="book<?= $id_lokasi;?>" aria-labelledby="book" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
@@ -159,9 +160,9 @@
                                 <select class="form-select" name="id_slot" required>
                                     <?php
                                     $selectSlot = mysqli_query($conn, "SELECT id_slot, nama_slot FROM detail_lokasi WHERE id_lokasi='$id_lokasi' AND status_slot = 'Available'");
-                                    while($row=mysqli_fetch_assoc($selectSlot)){
+                                    while($row1=mysqli_fetch_assoc($selectSlot)){
                                     ?>
-                                    <option value="<?= $row['id_slot'];?>"> <?= $row['nama_slot'];?> </option>
+                                    <option value="<?= $row1['id_slot'];?>"> <?= $row1['nama_slot'];?> </option>
                                     <?php
                                     }
                                     ?>
@@ -184,7 +185,7 @@
                         <div class="mb-3 row">
                             <label for="waktu_masuk" class="col-sm-5 col-form-label">Waktu Kedatangan</label>
                             <div class="col-sm-7">
-                                <input type="time" class="form-control" name="waktu_masuk" required>
+                                <input type="time" class="form-control" name="waktu_masuk" min="<?= substr($row['jam_operasional'],0,5);?>" max="<?= substr($row['jam_operasional'],-5);?>" required>
                             </div>
                         </div>
                     </div>

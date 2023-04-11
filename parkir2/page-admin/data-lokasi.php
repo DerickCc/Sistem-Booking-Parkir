@@ -75,7 +75,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Lokasi</th>
-                                    <th style="width: 500px;">Alamat</th>
+                                    <th style="width: 350px;">Alamat</th>
+                                    <th>Jam Operasional</th>
                                     <th>Tipe</th>
                                     <th>Tarif / jam</th>
                                     <th class="text-center">Opsi</th>
@@ -91,6 +92,7 @@
                                     <td><?= $row['id_lokasi'];?></td>
                                     <td><?= $row['nama_lokasi'];?></td>
                                     <td><?= $row['alamat'];?></td>
+                                    <td><?= $row['jam_operasional'];?></td>
                                     <td><?= ucwords($row['tipe']);?></td>
                                     <td><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?></td>
                                     <td class="text-center opsi">
@@ -141,6 +143,14 @@
                             <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" name="alamat" rows="2" autocomplete="off" required></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="jam_operasional" class="col-sm-4 col-form-label">Jam Operasional</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="jam_operasional" autocomplete="off" required
+                                pattern="[0-2][0-9]:[0-5][0-9]-[0-2][0-9]:[0-5][0-9]" maxlength=11>
+                                <span class="small text-muted">Format: xx:xx-yy:yy</span>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -199,6 +209,14 @@
                             <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" name="alamat" rows="2" autocomplete="off" required><?= $row['alamat'];?></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="jam_operasional" class="col-sm-4 col-form-label">Jam Operasional</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="jam_operasional" value="<?= $row['jam_operasional'];?>" autocomplete="off" required
+                                pattern="[0-2][0-9]:[0-5][0-9]-[0-2][0-9]:[0-5][0-9]" maxlength=11>
+                                <span class="small text-muted">Format: xx:xx-yy:yy</span>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -261,6 +279,12 @@
                             <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" name="alamat" rows="2" readonly><?= $row['alamat'];?></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="jam_operasional" class="col-sm-4 col-form-label">Jam Operasional</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="jam_operasional" value="<?= $row['jam_operasional'];?>" readonly>
                             </div>
                         </div>
                         <div class="mb-3 row">
