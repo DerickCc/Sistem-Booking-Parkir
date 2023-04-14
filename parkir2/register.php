@@ -4,23 +4,29 @@ $conn = mysqli_connect("localhost", "root", "", "parkir");
 $was_validated = "";
 
 if(isset($_POST["register"])){
-    if($_POST["password"] == $_POST["cpass"]){
-        $nama_depan = $_POST['nama_depan'];
-        $nama_belakang = $_POST['nama_belakang'];
-        $email = $_POST['email'];
-        $no_telp = $_POST['no_telp'];
-        $password = $_POST['password'];
+    $email = $_POST['email'];
+    $cekEmail = mysqli_query($conn, "SELECT email FROM pengguna WHERE email = '$email'");
+    if(mysqli_num_rows($cekEmail) == 0){
+        if($_POST["password"] == $_POST["cpass"]){
+            $nama_depan = $_POST['nama_depan'];
+            $nama_belakang = $_POST['nama_belakang'];
+            $no_telp = $_POST['no_telp'];
+            $password = $_POST['password'];
 
-        $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '', '$password', '')");
+            $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '', '$password', '')");
 
-        if($insert){
-            header("Location: login.php?status=1");
+            if($insert){
+                header("Location: login.php?status=1");
+            } else {
+                header("Location: register.php");
+            }
         } else {
-            header("Location: register.php");
+            $sama = false;
+            $was_validated = "was-validated";
         }
-    } else {
-        $sama = false;
-        $was_validated = "was-validated";
+    }
+    else{
+        header("Location: register.php?status=400");
     }
 }
 ?>
@@ -61,7 +67,22 @@ if(isset($_POST["register"])){
         <a class="navbar-brand" href="login.php">E-Parkir</a>
     </nav>
     <div class="container">
-        <div class="card col-8 o-hidden border-0 shadow-lg mt-5 mx-auto">
+        <div class="col-8 mx-auto my-3 px-0">
+        <?php
+            if(empty($_REQUEST['status'])){
+                echo "";
+            }
+            elseif($_REQUEST['status'] == 400){
+                echo '
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-circle-xmark mr-2"></i>
+                    Mohon menggunakan email yang belum terdaftar!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+        ?>
+        </div>
+        <div class="card col-8 o-hidden border-0 shadow-lg mt-4 mx-auto">
             <div class="card-body col-12 p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">

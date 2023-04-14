@@ -37,7 +37,7 @@
                             echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>";
                     }
-                    elseif($_REQUEST['status'] == 0){
+                    elseif($_REQUEST['status'] == 400){
                         echo "
                         <div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <i class='fa-solid fa-circle-xmark mr-2'></i> Error!

@@ -2,35 +2,10 @@
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "parkir");
 
-// //cek login terdaftar apa tidak
-// if(isset($_POST['login'])){
-//     $nama = $_POST['nama'];
-//     $password = $_POST['password'];
-    
-// //cek database
-//     $cekdatabase = mysqli_query($koneksi,"Select * from login where nama='$nama' and password='$password'");
-//     //hitung jumlah data
-//     $hitung = mysqli_num_rows($cekdatabase);
-//     if($hitung>0){
-//         $_SESSION['log']='True';
-//         header('location:home.html');
-//     }
-//     else{
-//         header('location:login.php');
-//     };
-    
-// };
-
-// if(!isset($_SESSION['log'])){
-
-// } else {
-//     header('location:home.html');
-// }
 $was_validated = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST["email"];
     $password = $_POST["password"];
-
     
     $hsl = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '$email' AND password = '$password' LIMIT 1");
     
@@ -91,73 +66,71 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 
     <body>
-            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-theme">
-                <a class="navbar-brand" href="login.php">E-Parkir</a>
-            </nav>
-            
-                <div class="row justify-content-center">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-theme">
+            <a class="navbar-brand" href="login.php">E-Parkir</a>
+        </nav>
+        
+            <div class="row justify-content-center">
+                <div class="col-10 mx-auto my-3 px-0">
+                <?php
+                    if(empty($_REQUEST['status'])){
+                        echo "";
+                    }
+                    elseif($_REQUEST['status'] == 1){
+                        echo '
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-circle-check mr-2"></i> 
+                            Akun berhasil dibuat.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                ?>
+                </div>
 
-                    <div class="col-xl-10 col-lg-12 col-md-9">
-                    <?php
-                        if(empty($_REQUEST['status'])){
-                            echo "";
-                        }
-                        elseif($_REQUEST['status'] == 1){
-                            echo '
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="fa-solid fa-circle-check mr-2"></i> 
-                                Akun berhasil dibuat.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
-                        }
-                    ?>
-
-                        <div class="card o-hidden border-0 shadow-lg mt-5">
-                            <div class="card-body p-0">
-                                <!-- Nested Row within Card Body -->
-                                <div class="row">
-                                    <div class="col-lg-6 d-none d-lg-block">
-                                        <img src="img/carpark.jpg" alt="Parking Image" width="610px" height="610px">
+                <div class="card o-hidden border-0 shadow-lg col-md-10">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block">
+                                <img src="img/carpark.jpg" alt="Parking Image" width="610px" height="610px">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <p class="h4 text-gray-900 mb-4 font-weight-bold">Welcome!</p>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="p-5">
-                                            <div class="text-center">
-                                                <p class="h4 text-gray-900 mb-4 font-weight-bold">Welcome!</p>
-                                            </div>
-                                            <!-- action="<?php// echo $_SERVER['PHP_SELF']; ?>"  -->
-                                            <form method="post" class="user needs-validation">
-                                                <div class="form-group <?= $was_validated;?>">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="email" name="email" class="form-control form-control-user" required id="email" placeholder="Email" style="border-radius: 7px;">
-                                                    <div class="invalid-feedback">Mohon meng-input email Anda</div>
-                                                </div>
-                                                <div class="form-group <?= $was_validated;?>">
-                                                    <label class="form-label" for="password">Password</label>
-                                                    <input type="password" name="password" class="form-control form-control-user" required id="password"  placeholder="Password" style="border-radius: 7px;">
-                                                    <div class="invalid-feedback">Mohon meng-input password Anda</div>
-                                                    <?php
-                                                        if(isset($cek)){
-                                                            echo 
-                                                            "<div class='alert alert-danger alert-dismissible fade show mt-3' role='alert'>
-                                                                <i class='fa-solid fa-circle-xmark mr-2'></i> Email atau password Anda salah!
-                                                                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
-                                                            </div>";
-                                                        }
-                                                    ?>
-                                                </div>
-                                                <button type="submit" name="login" class="btn btn-primary py-2 w-100 mt-3" style="border-radius: 5px;">Login</button>
-                                            </form>
-                                            <hr>
-                                            <div class="text-center">
-                                                <a class="small" href="register.php">Tidak memiliki akun? Buat Akun!</a>
-                                            </div>
+                                    <form method="post" class="user needs-validation">
+                                        <div class="form-group <?= $was_validated;?>">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="email" class="form-control form-control-user" required id="email" placeholder="Email" style="border-radius: 7px;">
+                                            <div class="invalid-feedback">Mohon meng-input email Anda</div>
                                         </div>
+                                        <div class="form-group <?= $was_validated;?>">
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" name="password" class="form-control form-control-user" required id="password"  placeholder="Password" style="border-radius: 7px;">
+                                            <div class="invalid-feedback">Mohon meng-input password Anda</div>
+                                            <?php
+                                                if(isset($cek)){
+                                                    echo 
+                                                    "<div class='alert alert-danger alert-dismissible fade show mt-3' role='alert'>
+                                                        <i class='fa-solid fa-circle-xmark mr-2'></i> Email atau password Anda salah!
+                                                        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+                                                    </div>";
+                                                }
+                                            ?>
+                                        </div>
+                                        <button type="submit" name="login" class="btn btn-primary py-2 w-100 mt-3" style="border-radius: 5px;">Login</button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="register.php">Tidak memiliki akun? Buat Akun!</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>    
 
 

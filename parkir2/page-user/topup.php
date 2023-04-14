@@ -28,7 +28,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                     }
-                    elseif($_REQUEST['status'] == 0){
+                    elseif($_REQUEST['status'] == 400){
                         echo "
                         <div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <i class='fa-solid fa-circle-xmark mr-2'></i> Error!
@@ -72,7 +72,7 @@
                                             No. Kartu
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" name="no_kartu" required
+                                            <input type="text" class="form-control" name="no_kartu" autocomplete="off" required
                                             pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength=19>
                                             <span class="small text-muted">Format: xxxx xxxx xxxx xxxx</span>
                                         </div>

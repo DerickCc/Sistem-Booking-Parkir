@@ -37,7 +37,7 @@ if(isset($_POST['tambahPengguna'])){
         header('location:data-pengguna.php?status=1');
     }
     else{
-        header('location:data-pengguna.php?status=0');
+        header('location:data-pengguna.php?status=400');
     }
 }
 
@@ -65,7 +65,7 @@ if(isset($_POST['editPengguna'])){
         header('location:data-pengguna.php?status=2');
     }
     else{
-        header('location:data-pengguna.php?status=0');
+        header('location:data-pengguna.php?status=400');
     }
 }
 
@@ -79,7 +79,7 @@ if(isset($_POST['hapusPengguna'])){
         header('location:data-pengguna.php?status=3');
     }
     else{
-        header('location:data-pengguna.php?status=0');
+        header('location:data-pengguna.php?status=400');
     }
 }
 
@@ -105,7 +105,7 @@ if(isset($_POST['tambahLokasi'])){
         header('location:data-lokasi.php?status=1');
     }
     else{
-        header('location:data-lokasi.php?status=0');
+        header('location:data-lokasi.php?status=400');
     }
 }
 
@@ -129,7 +129,7 @@ if(isset($_POST['editLokasi'])){
         header('location:data-lokasi.php?status=2');
     }
     else{
-        header('location:data-lokasi.php?status=0');
+        header('location:data-lokasi.php?status=400');
     }
 }
 
@@ -146,7 +146,7 @@ if(isset($_POST['hapusLokasi'])){
         header('location:data-lokasi.php?status=3');
     }
     else{
-        header('location:data-lokasi.php?status=0');
+        header('location:data-lokasi.php?status=400');
     }
 }
 
@@ -171,7 +171,7 @@ if(isset($_POST['tambahSlot'])){
         header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=1');
     }
     else{
-        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=400');
     }
 }
 
@@ -192,7 +192,7 @@ if(isset($_POST['editSlot'])){
         header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=2');
     }
     else{
-        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=400');
     }
 }
 
@@ -207,7 +207,7 @@ if(isset($_POST['hapusSlot'])){
         header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=3');
     }
     else{
-        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=0');
+        header('location:detail-lokasi.php?id_lokasi='.$id_lokasi.'&status=400');
     }
 }
 
@@ -241,7 +241,7 @@ if(isset($_POST['simpanProfile'])){
         header('location:profile.php?status=1');
     }
     else{
-        header('location:profile.php?status=0');
+        header('location:profile.php?status=400');
     }
 }
 
@@ -255,7 +255,7 @@ if(isset($_POST['topUp'])){
         header('location:topup.php?status=1');
     }
     else{
-        header('location:topup.php?status=0');
+        header('location:topup.php?status=400');
     }
 }
 
@@ -282,7 +282,7 @@ if(isset($_POST['bookParkir'])){
         header('location:berlangsung.php');
     }
     else{
-        header('location:booking.php?status=0');
+        header('location:booking.php?status=400');
     }
 }
 
@@ -297,7 +297,7 @@ if(isset($_POST['checkInBooking'])){
         header('location:berlangsung.php?status=1');
     }
     else{
-        header('location:berlangsung.php?status=0');
+        header('location:berlangsung.php?status=400');
     }
 }
 
@@ -314,7 +314,7 @@ if(isset($_POST['cancelBooking'])){
         header('location:berlangsung.php?status=2');
     }
     else{
-        header('location:berlangsung.php?status=0');
+        header('location:berlangsung.php?status=400');
     }
 }
 
@@ -346,7 +346,7 @@ if(isset($_POST['checkOutBooking'])){
         header('location:selesai.php?status=1');
     }
     else{
-        header('location:berlangsung.php?status=0');
+        header('location:berlangsung.php?status=400');
     }
 }
 
