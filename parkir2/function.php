@@ -11,8 +11,8 @@ else{
     die('Anda Tidak Memiliki Akses!');
 }
 
-$selectE_Money = mysqli_query($conn, "SELECT nama_depan, nama_belakang, email, no_telp, password, e_money FROM pengguna WHERE id_pengguna = '$id_pengguna'");
-$row = mysqli_fetch_row($selectE_Money);
+$selectData = mysqli_query($conn, "SELECT nama_depan, nama_belakang, email, no_telp, password, e_money FROM pengguna WHERE id_pengguna = '$id_pengguna'");
+$row = mysqli_fetch_row($selectData);
 $nama_depan = $row[0];
 $nama_belakang = $row[1];
 $email = $row[2];

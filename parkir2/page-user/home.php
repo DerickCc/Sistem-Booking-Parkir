@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 
-                <!-- Card mall rekomendasi -->
+                <!-- Carousel mall rekomendasi -->
                 <div class="col-6">
                     <div class="card">
                         <div class="card-body">

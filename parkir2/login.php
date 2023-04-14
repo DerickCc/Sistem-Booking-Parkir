@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block">
+                            <div class="col-lg-6 d-none d-lg-block px-0">
                                 <img src="img/carpark.jpg" alt="Parking Image" width="610px" height="610px">
                             </div>
                             <div class="col-lg-6">
