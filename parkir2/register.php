@@ -144,8 +144,7 @@ if(isset($_POST["register"])){
                                 </div>
                                 <button type="submit" name="register" class="btn btn-primary py-2 w-100 mt-3" style="border-radius: 5px;">Daftar</button>
                             </form>
-                            <hr>
-                            <div class="text-center">
+                            <div class="text-center my-3">
                                 <a class="small" href="login.php">Sudah memiliki akun? Login!</a>
                             </div>
                         </div>
