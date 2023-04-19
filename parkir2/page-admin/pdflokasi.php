@@ -45,7 +45,7 @@ class MYPDF extends TCPDF {
 	// Colored table
 	public function ColoredTable($header,$data) {
 		// Colors, line width and bold font
-		$this->setFillColor(33, 37, 41);
+		$this->setFillColor(0, 0, 140);
 		$this->setTextColor(255,255,255);
 		$this->setDrawColor(255,255,255);
 		$this->setLineWidth(0.3);
@@ -67,9 +67,9 @@ class MYPDF extends TCPDF {
 			$this->Cell($w[0], 10, $row["id_lokasi"], 'LR', 0, 'C', $fill);
 			$this->Cell($w[1], 10, $row["nama_lokasi"], 'LR', 0, 'L', $fill);
 			$this->Cell($w[2], 10, $row["alamat"], 'LR', 0, 'L', $fill);
-			$this->Cell($w[3], 10, $row["jam_operasional"], 'LR', 0, 'L', $fill);
+			$this->Cell($w[3], 10, $row["jam_operasional"], 'LR', 0, 'C', $fill);
             $this->Cell($w[5], 10, $row["tipe"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[5], 10, $row["tarif"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[5], 10, "Rp " . number_format($row['tarif'], 2, ",", "."), 'LR', 0, 'C', $fill);
            
 			
 			$this->Ln();

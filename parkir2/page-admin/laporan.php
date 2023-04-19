@@ -19,34 +19,54 @@
                 <div class="card col-11 mx-auto">
                     <div class="card-body">
                         <div class="row my-4">
-                            <div class="col-4">
+                            <div class="col-10">
                                 <h5>Generate Data Lokasi</h5>
                             </div>
-                            <div class="col-8">
+                            <div class="col-2">
                                 <a href="pdflokasi.php" class="btn btn-success" role="button" target="_blank">Generate</a>
                             </div>
                         </div>
                         <div class="row my-4">
-                            <div class="col-4">
+                            <div class="col-10">
                                 <h5>Generate Data Detail Lokasi</h5>
                             </div>
-                            <div class="col-8">
+                            <div class="col-2">
                                 <a href="pdfdetaillokasi.php" class="btn btn-success" role="button" target="_blank">Generate</a>
                             </div>
                         </div>
-                        <div class="row my-4">
-                            <div class="col-4">
-                                <h5>Generate Data Booking</h5>
+                        <div class="row my-4 d-flex align-items-center">
+                            <div class="col-3">
+                                <h5>Generate Data Booking Pada</h5>
                             </div>
-                            <div class="col-8">
-                                <a href="pdfbooking.php" class="btn btn-success" role="button" target="_blank">Generate</a>
+                            <div class="col-2">
+                                <select class="form-select" name="id_lokasi" id="id_lokasi">
+                                    <?php
+                                    $selectLokasi = mysqli_query($conn, "SELECT id_lokasi, nama_lokasi FROM lokasi");
+                                    while($row=mysqli_fetch_assoc($selectLokasi)){
+                                        echo'
+                                        <option value="'.$row['id_lokasi'].'">'.$row['nama_lokasi'].'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <!-- blank -->
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-success" onclick="generateBooking()">Generate</a>
+                                <script>
+                                    function generateBooking() {
+                                        id_lokasi = document.getElementById("id_lokasi").value;
+                                        window.open("pdfbooking.php?id_lokasi=" + id_lokasi, '_blank');
+                                    }
+                                </script>
                             </div>
                         </div>
                         <div class="row my-4">
-                            <div class="col-4">
+                            <div class="col-10">
                                 <h5>Generate Data Pengguna</h5>
                             </div>
-                            <div class="col-8">
+                            <div class="col-2">
                                 <a href="pdfpengguna.php" class="btn btn-success" role="button" target="_blank">Generate</a>
                             </div>
                         </div>

@@ -37,7 +37,13 @@ class MYPDF extends TCPDF {
 	// Load table data from file
 	public function LoadData() {
 		include 'connect.php';
-        $select = "SELECT * FROM booking";
+		$id_lokasi = $_REQUEST['id_lokasi'];
+        $select = "SELECT * FROM booking AS b 
+				   INNER JOIN detail_lokasi AS dl ON b.id_slot = dl.id_slot 
+				   INNER JOIN lokasi AS l ON dl.id_lokasi = l.id_lokasi
+				   INNER JOIN pengguna AS p ON b.id_pengguna = p.id_pengguna 
+				   WHERE dl.id_lokasi = '$id_lokasi'
+				   ORDER BY b.id_booking ASC";
         $query = mysqli_query($koneksi, $select);
         return $query;
 	}
@@ -45,13 +51,13 @@ class MYPDF extends TCPDF {
 	// Colored table
 	public function ColoredTable($header,$data) {
 		// Colors, line width and bold font
-		$this->setFillColor(33, 37, 41);
+		$this->setFillColor(0, 0, 140);
 		$this->setTextColor(255,255,255);
 		$this->setDrawColor(255,255,255);
 		$this->setLineWidth(0.3);
 		$this->setFont('helvetica', 'B');
 		// Header
-		$w = array(30,30,20,30,40,40,40,40,40,40,45);
+		$w = array(30,60,50,100,30,40,40,40,40,40,40,45);
 		$num_headers = count($header);
 		for($i = 0; $i < $num_headers; ++$i) {
 			$this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
@@ -65,16 +71,17 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		foreach($data as $row) {
 			$this->Cell($w[0], 10, $row["id_booking"], 'LR', 0, 'C', $fill);
-			$this->Cell($w[1], 10, $row["id_pengguna"], 'LR', 0, 'C', $fill);
-			$this->Cell($w[2], 10, $row["id_slot"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[3], 10, $row["no_plat"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[4], 10, $row["tanggal"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[5], 10, $row["waktu_masuk"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[6], 10, $row["waktu_keluar"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[7], 10, $row["durasi"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[8], 10, $row["biaya"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[9], 10, $row["metode_bayar"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[10], 10, $row["status_booking"], 'LR', 0, 'C', $fill);
+			$this->Cell($w[1], 10, $row["email"], 'LR', 0, 'C', $fill);
+			$this->Cell($w[2], 10, $row["nama_lokasi"], 'LR', 0, 'C', $fill);
+			$this->Cell($w[3], 10, $row["nama_slot"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[4], 10, $row["no_plat"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[5], 10, $row["tanggal"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[6], 10, $row["waktu_masuk"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[7], 10, $row["waktu_keluar"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[8], 10, $row["durasi"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[9], 10, "Rp " . number_format($row['biaya'], 2, ",", "."), 'LR', 0, 'C', $fill);
+            $this->Cell($w[10], 10, $row["metode_bayar"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[11], 10, $row["status_booking"], 'LR', 0, 'C', $fill);
 
 			
 			$this->Ln();
@@ -85,7 +92,7 @@ class MYPDF extends TCPDF {
 }
 
 // create new PDF document
-$pdf = new MYPDF('L', PDF_UNIT, ['format' => 'A3'], true, 'UTF-8', false);
+$pdf = new MYPDF('L', PDF_UNIT, ['format' => 'A2'], true, 'UTF-8', false);
 
 // set document information
 $pdf->setCreator(PDF_CREATOR);
@@ -130,7 +137,7 @@ $pdf->setFont('times', '', 12);
 $pdf->AddPage();
 
 // column titles
-$header = array('Id Lokasi', 'Id Pengguna', 'Id Slot', 'Plat', 'Tanggal', 'Waktu Masuk', 'Waktu Keluar', 'Durasi', 'Biaya', 'Metode', 'Status Booking');
+$header = array('Id Booking', 'Pengguna', 'Lokasi', 'Slot', 'Plat', 'Tanggal', 'Waktu Masuk', 'Waktu Keluar', 'Durasi', 'Biaya', 'Metode', 'Status Booking');
 
 // data loading
 $data = $pdf->LoadData();
