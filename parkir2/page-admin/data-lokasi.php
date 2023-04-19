@@ -16,7 +16,7 @@
         <div id="layoutSidenav_content">
             <div class="row">
                 <h3>Lokasi</h3>
-                <div class="card col-11 mx-auto">
+                <div class="card col-12 mx-auto">
                     <div class="card-header">
                         <div class="card-title mt-2">
                             <div class="row">
@@ -74,8 +74,9 @@
                             <thead class="bg-dark text-white">
                                 <tr>
                                     <th>ID</th>
+                                    <th>Foto Lokasi</th>
                                     <th>Nama Lokasi</th>
-                                    <th style="width: 350px;">Alamat</th>
+                                    <th style="width: 300px;">Alamat</th>
                                     <th>Jam Operasional</th>
                                     <th>Tipe</th>
                                     <th>Tarif / jam</th>
@@ -89,13 +90,14 @@
                                 while($row = mysqli_fetch_assoc($selectLokasi)){
                                 ?>
                                 <tr>
-                                    <td><?= $row['id_lokasi'];?></td>
-                                    <td><?= $row['nama_lokasi'];?></td>
-                                    <td><?= $row['alamat'];?></td>
-                                    <td><?= $row['jam_operasional'];?></td>
-                                    <td><?= ucwords($row['tipe']);?></td>
-                                    <td><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?></td>
-                                    <td class="text-center opsi">
+                                    <td class="align-middle"><?= $row['id_lokasi'];?></td>
+                                    <td class="align-middle"><img src="../img/location/<?= $row['foto_lokasi'];?>" style="width: 100px;"></td>
+                                    <td class="align-middle"><?= $row['nama_lokasi'];?></td>
+                                    <td class="align-middle"><?= $row['alamat'];?></td>
+                                    <td class="align-middle"><?= $row['jam_operasional'];?></td>
+                                    <td class="align-middle"><?= ucwords($row['tipe']);?></td>
+                                    <td class="align-middle"><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?></td>
+                                    <td class="align-middle text-center">
                                         <!-- detail -->
                                         <a role="button" class="btn btn-primary" href="detail-lokasi.php?id_lokasi=<?= $row['id_lokasi'];?>">
                                             <i class="fa-solid fa-folder-open"></i>
@@ -104,6 +106,11 @@
                                         <!-- edit -->
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editLokasi<?= $row['id_lokasi'];?>">
                                             <i class="fa-regular fa-pen-to-square fa-lg" style="color: #fff"></i>
+                                        </button>
+
+                                        <!-- upload -->
+                                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#uploadLokasi<?= $row['id_lokasi'];?>">  
+                                            <i class="fa-solid fa-image fa-lg" style="color: #fff"></i>
                                         </button>
 
                                         <!-- hapus -->
@@ -127,7 +134,7 @@
     <div class="modal fade" id="tambahLokasi" aria-labelledby="tambahLokasi" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="modal-header bg-success text-white">
                         <h4 class="modal-title">Tambah Lokasi</h4>
                         <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -166,6 +173,12 @@
                             <label for="tarif" class="col-sm-4 col-form-label">Tarif</label>
                             <div class="col-sm-8">
                                 <input type="number" class="form-control" name="tarif" min="1000" max="10000" step="1000" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="foto_lokasi" class="col-sm-4 col-form-label">Foto Lokasi</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" name="foto_lokasi" required>
                             </div>
                         </div>
                     </div>
@@ -247,6 +260,33 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success" name="editLokasi" value="editLokasi">Edit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal upload foto lokasi -->
+    <div class="modal fade" id="uploadLokasi<?= $row['id_lokasi'];?>" aria-labelledby="uploadLokasi" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="modal-header bg-info text-white">
+                        <h4 class="modal-title">Upload Foto Lokasi</h4>
+                        <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" name="id_lokasi" value="<?= $row['id_lokasi'];?>" hidden>
+                        <div class="mb-3 row">
+                            <label for="foto_lokasi" class="col-sm-4 col-form-label">Foto Lokasi</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" name="foto_lokasi" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" name="uploadLokasi" value="uploadLokasi">Upload</button>
+                        <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </div>
                 </form>
             </div>

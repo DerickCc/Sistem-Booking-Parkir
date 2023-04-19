@@ -1,4 +1,6 @@
-<?php include "../function.php";?>
+<?php 
+include "../function.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,11 +44,11 @@
                         <h3>Profile</h3>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-4">
                                     <div class="row justify-content-center">
-                                        <img src="../img/user.png" class="img-fluid w-75 mb-5" alt="Profile Picture">
+                                        <img src="../img/profile/<?= $foto_pengguna?>" class="img-fluid w-75" alt="Profile Picture">
                                         <div class="col-9 text-center">
                                             <?php
                                             $readonly = "readonly";
@@ -55,10 +57,11 @@
                                                 $readonly = "";
                                                 $hidden = "hidden";
                                                 echo '
-                                                <button class="btn btn-success w-50" name="simpanProfile">Simpan</button>';
+                                                <input type="file" name="foto_pengguna" class="form-control mt-3" required>
+                                                <button class="btn btn-success w-50 mt-3" name="simpanProfile">Simpan</button>';
                                             }
                                             ?>
-                                            <button class="btn btn-warning w-50" name="editProfile" <?= $hidden;?>>Edit Profile</button>
+                                            <button class="btn btn-warning w-50 mt-5" name="editProfile" <?= $hidden;?>>Edit Profile</button>
                                         </div>
                                     </div>
                                 </div>

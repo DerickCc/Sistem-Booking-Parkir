@@ -11,7 +11,7 @@ else{
     die('Anda Tidak Memiliki Akses!');
 }
 
-$selectData = mysqli_query($conn, "SELECT nama_depan, nama_belakang, email, no_telp, password, e_money FROM pengguna WHERE id_pengguna = '$id_pengguna'");
+$selectData = mysqli_query($conn, "SELECT nama_depan, nama_belakang, email, no_telp, password, e_money, foto_pengguna FROM pengguna WHERE id_pengguna = '$id_pengguna'");
 $row = mysqli_fetch_row($selectData);
 $nama_depan = $row[0];
 $nama_belakang = $row[1];
@@ -19,6 +19,7 @@ $email = $row[2];
 $no_telp = $row[3];
 $password = $row[4];
 $e_money = $row[5];
+$foto_pengguna = $row[6];
 
 //data-pengguna
 //tambah pengguna
@@ -27,11 +28,11 @@ if(isset($_POST['tambahPengguna'])){
     $nama_belakang = $_POST['nama_belakang'];
     $email = $_POST['email'];
     $no_telp = $_POST['no_telp'];
-    $password = $_POST['password'];
+    $password = hash_hmac('sha256', $_POST['password'], 'Qw3rtiliz4t1on');
     $e_money = $_POST['e_money'];
     $role = $_POST['role'];
 
-    $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '$e_money', '$password', '$role' )");
+    $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '$e_money', '$password', 'user.png', '$role', 'Active' )");
 
     if($insert){
         header('location:data-pengguna.php?status=1');
@@ -48,9 +49,9 @@ if(isset($_POST['editPengguna'])){
     $nama_belakang = $_POST['nama_belakang'];
     $email = $_POST['email'];
     $no_telp = $_POST['no_telp'];
-    $password = $_POST['password'];
     $e_money = $_POST['e_money'];
     $role = $_POST['role'];
+    $status_pengguna = $_POST['status_pengguna'];
 
     $update = mysqli_query($conn, "UPDATE pengguna SET 
     nama_depan='$nama_depan', 
@@ -58,25 +59,11 @@ if(isset($_POST['editPengguna'])){
     email='$email', 
     no_telp='$no_telp',
     e_money='$e_money',
-    password='$password',
-    role='$role' WHERE id_pengguna = '$id_pengguna'");
+    role='$role',
+    status_pengguna='$status_pengguna' WHERE id_pengguna = '$id_pengguna'");
 
     if($update){
         header('location:data-pengguna.php?status=2');
-    }
-    else{
-        header('location:data-pengguna.php?status=400');
-    }
-}
-
-//hapus pengguna
-if(isset($_POST['hapusPengguna'])){
-    $id_pengguna = $_POST['id_pengguna'];
-
-    $delete = mysqli_query($conn, "DELETE FROM pengguna WHERE id_pengguna = '$id_pengguna'");
-
-    if($delete){
-        header('location:data-pengguna.php?status=3');
     }
     else{
         header('location:data-pengguna.php?status=400');
@@ -93,13 +80,35 @@ if(isset($_POST['cariNamaPengguna'])){
 //data-lokasi
 //tambah lokasi
 if(isset($_POST['tambahLokasi'])){
+    require '../../../vendor/autoload.php';
+
+    $storage = new \Upload\Storage\FileSystem('../img/location/');
+    $file = new \Upload\File('foto_lokasi', $storage);
+
+    $file->addValidations(array(
+        new \Upload\Validation\Mimetype(array('image/png', 'image/jpg', 'image/jpeg')),
+        new \Upload\Validation\Size('5M')
+    ));
+
+    $foto = $file->getNameWithExtension();
+
+    try{
+        $file->upload();
+    } catch (Exception $e) {
+        // Fail!
+        $errors = $file->getErrors();
+        foreach($errors as $key => $value){
+            echo $value . "<br>";
+        }
+    }
+
     $nama_lokasi = $_POST['nama_lokasi'];
     $alamat = $_POST['alamat'];
     $jam_operasional = $_POST['jam_operasional'];
     $tipe = $_POST['tipe'];
     $tarif = $_POST['tarif'];
 
-    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$alamat', '$jam_operasional', '$tipe', '$tarif')");
+    $insert = mysqli_query($conn, "INSERT INTO lokasi VALUES('', '$nama_lokasi', '$alamat', '$jam_operasional', '$tipe', '$tarif', '$foto')");
 
     if($insert){
         header('location:data-lokasi.php?status=1');
@@ -124,6 +133,42 @@ if(isset($_POST['editLokasi'])){
     jam_operasional='$jam_operasional',
     tipe='$tipe',
     tarif='$tarif' WHERE id_lokasi='$id_lokasi'");
+
+    if($update){
+        header('location:data-lokasi.php?status=2');
+    }
+    else{
+        header('location:data-lokasi.php?status=400');
+    }
+}
+
+//upload foto lokasi
+if(isset($_POST['uploadLokasi'])){
+    require '../../../vendor/autoload.php';
+
+    $storage = new \Upload\Storage\FileSystem('../img/location/');
+    $file = new \Upload\File('foto_lokasi', $storage);
+
+    $file->addValidations(array(
+        new \Upload\Validation\Mimetype(array('image/png', 'image/jpg', 'image/jpeg')),
+        new \Upload\Validation\Size('5M')
+    ));
+
+    $foto = $file->getNameWithExtension();
+
+    try{
+        $file->upload();
+    } catch (Exception $e) {
+        // Fail!
+        $errors = $file->getErrors();
+        foreach($errors as $key => $value){
+            echo $value . "<br>";
+        }
+    }
+
+    $id_lokasi = $_POST['id_lokasi'];
+
+    $update = mysqli_query($conn, "UPDATE lokasi SET foto_lokasi='$foto' WHERE id_lokasi='$id_lokasi'");
 
     if($update){
         header('location:data-lokasi.php?status=2');
@@ -223,19 +268,43 @@ if(isset($_POST['cariNamaSlot'])){
 
 //profile
 //simpan profile
+
 if(isset($_POST['simpanProfile'])){
+    require '../../../vendor/autoload.php';
+
+    $storage = new \Upload\Storage\FileSystem('../img/profile/');
+    $file = new \Upload\File('foto_pengguna', $storage);
+
+    $file->addValidations(array(
+        new \Upload\Validation\Mimetype(array('image/png', 'image/jpg', 'image/jpeg')),
+        new \Upload\Validation\Size('5M')
+    ));
+
+    $foto = $file->getNameWithExtension();
+
+    try{
+        $file->upload();
+    } catch (Exception $e) {
+        // Fail!
+        $errors = $file->getErrors();
+        foreach($errors as $key => $value){
+            echo $value . "<br>";
+        }
+    }
+    
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
     $email = $_POST['email'];
     $no_telp = $_POST['no_telp'];
-    $password = $_POST['password'];
+    $password = hash_hmac('sha256', $_POST['password'], 'Qw3rtiliz4t1on');
 
     $update = mysqli_query($conn, "UPDATE pengguna SET 
     nama_depan='$nama_depan', 
     nama_belakang='$nama_belakang', 
     email='$email', 
     no_telp='$no_telp',
-    password='$password' WHERE id_pengguna = '$id_pengguna'");
+    password='$password',
+    foto_pengguna='$foto' WHERE id_pengguna = '$id_pengguna'");
 
     if($update){
         header('location:profile.php?status=1');

@@ -70,8 +70,8 @@ class MYPDF extends TCPDF {
             $this->Cell($w[3], 10, $row["email"], 'LR', 0, 'L', $fill);
             $this->Cell($w[4], 10, $row["no_telp"], 'LR', 0, 'L', $fill);
             $this->Cell($w[5], 10, $row["e_money"], 'LR', 0, 'C', $fill);
-            $this->Cell($w[6], 10, $row["password"], 'LR', 0, 'C', $fill);
             $this->Cell($w[7], 10, $row["role"], 'LR', 0, 'C', $fill);
+            $this->Cell($w[6], 10, $row["status_pengguna"], 'LR', 0, 'C', $fill);
            
 
 			
@@ -128,7 +128,7 @@ $pdf->setFont('times', '', 12);
 $pdf->AddPage();
 
 // column titles
-$header = array('Id Pengguna', 'Nama Depan', 'Nama Belakang', 'Email', 'No. Telp', 'E-Money', 'Password', 'Role');
+$header = array('Id Pengguna', 'Nama Depan', 'Nama Belakang', 'Email', 'No. Telp', 'E-Money', 'Role', 'Status');
 
 // data loading
 $data = $pdf->LoadData();

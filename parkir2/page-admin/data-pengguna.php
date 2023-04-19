@@ -79,8 +79,8 @@
                                     <th>Email</th>
                                     <th>No. Telp</th>
                                     <th>E-Money</th>
-                                    <th>Password</th>
                                     <th>Role</th>
+                                    <th>Status</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
@@ -97,23 +97,28 @@
                                     <td><?= $row['email'];?></td>
                                     <td><?= $row['no_telp'];?></td>
                                     <td><?= "Rp " . number_format($row['e_money'], 2, ",", ".");?></td>
-                                    <td><?= $row['password'];?></td>
                                     <td><?= $row['role'];?></td>
+                                    <td>
+                                        <?php
+                                        if($row['status_pengguna'] == 'Active'){
+                                            echo'<span class="text-success font-weight-bold">Active</span>';
+                                        }
+                                        else{
+                                            echo'<span class="text-danger font-weight-bold">Inactive</span>';
+                                        }
+                                        
+                                        ?>
+                                    </td>
                                     <td class="text-center opsi">
-                                        <!-- detail -->
-                                        <!-- <button type="button" class="btn btn-primary">
-                                            <i class="far fa-file-alt fa-lg"></i>
-                                        </button> -->
-
                                         <!-- edit -->
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editPengguna<?= $row['id_pengguna'];?>">
                                             <i class="fa-regular fa-pen-to-square fa-lg" style="color: #fff"></i>
                                         </button>
 
-                                        <!-- hapus -->
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusPengguna<?= $row['id_pengguna'];?>">
+                                        <!-- ganti status -->
+                                        <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#gantiStatusPengguna<?= $row['id_pengguna'];?>">
                                             <i class="far fa-trash-alt fa-lg"></i>
-                                        </button>
+                                        </button> -->
                                     </td>
                                 </tr>
                                 <?php 
@@ -178,8 +183,8 @@
                             <label for="role" class="col-sm-4 col-form-label">Role</label>
                             <div class="col-sm-8">
                                 <select class="form-select" name="role" required>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
+                                    <option value="User">User</option>
+                                    <option value="Admin">Admin</option>
                                 </select>
                             </div>
                         </div>
@@ -246,23 +251,34 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="password" class="col-sm-4 col-form-label">Password</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="password" value="<?= $row['password'];?>" autocomplete="off" required>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
                             <label for="role" class="col-sm-4 col-form-label">Role</label>
                             <div class="col-sm-8">
                                 <select class="form-select" name="role" required>
                                     <?php 
-                                    if($row['role'] == '0'){
-                                        echo "<option selected value='0'>0</option>
-                                        <option value='1'>1</option>";
+                                    if($row['role'] == 'User'){
+                                        echo "<option selected value='User'>User</option>
+                                        <option value='Admin'>Admin</option>";
                                     }
                                     else{
-                                        echo "<option value='0'>0</option>
-                                        <option selected value='1'>1</option>";
+                                        echo "<option value='User'>User</option>
+                                        <option selected value='Admin'>Admin</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="status_pengguna" class="col-sm-4 col-form-label">Status</label>
+                            <div class="col-sm-8">
+                                <select class="form-select" name="status_pengguna" required>
+                                    <?php 
+                                    if($row['status_pengguna'] == 'Active'){
+                                        echo "<option selected value='Active'>Active</option>
+                                        <option value='Inactive'>Inactive</option>";
+                                    }
+                                    else{
+                                        echo "<option value='Active'>Active</option>
+                                        <option selected value='Inactive'>Inactive</option>";
                                     }
                                     ?>
                                 </select>
@@ -278,13 +294,13 @@
         </div>
     </div>
 
-    <!-- modal hapus pengguna -->
-    <div class="modal fade" id="hapusPengguna<?= $row['id_pengguna'];?>" aria-labelledby="hapusPengguna" aria-hidden="true">
+    <!-- modal non-aktifkan pengguna -->
+    <!-- <div class="modal fade" id="gantiStatusPengguna<?= $row['id_pengguna'];?>" aria-labelledby="gantiStatusPengguna" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST">
                     <div class="modal-header bg-danger text-white">
-                        <h4 class="modal-title">Hapus Pengguna</h4>
+                        <h4 class="modal-title">Non-aktifkan Pengguna</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -325,26 +341,27 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="password" class="col-sm-4 col-form-label">Password</label>
+                            <label for="role" class="col-sm-4 col-form-label">Role</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="password" value="<?= $row['password'];?>" readonly>
+                                <input type="text" class="form-control" name="role" value="<?= $row['role'];?>" readonly>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="role" class="col-sm-4 col-form-label">Role</label>
+                            <label for="status_pengguna" class="col-sm-4 col-form-label">Status</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="role" value="<?= $row['role'];?>" readonly>
+                                <input type="text" class="form-control" name="status_pengguna" value="<?= $row['status_pengguna'];?>" readonly>
                             </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
-                        <h6 class="mx-5 my-3 pr-3">Anda yakin ingin menghapus data pengguna ini?</h6>
-                        <button type="submit" class="btn btn-success" name="hapusPengguna" value="hapusPengguna">Hapus</button>
+                        <h6 class="mx-5 my-3 pr-3">Anda yakin ingin menon-aktifkan pengguna ini?</h6>
+                        <button type="submit" class="btn btn-success" name="gantiStatusPengguna" value="gantiStatusPengguna">Non-aktifkan</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
     </div>
     <?php
     }

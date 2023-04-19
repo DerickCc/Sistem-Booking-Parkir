@@ -31,7 +31,4 @@
     .card-title .title{
         font-size: 24px;
     }
-    .opsi button{
-        width: 42px;
-    }
 </style>

@@ -5,7 +5,7 @@ $conn = mysqli_connect("localhost", "root", "", "parkir");
 $was_validated = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = hash_hmac('sha256', $_POST['password'], 'Qw3rtiliz4t1on');
     
     $hsl = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '$email' AND password = '$password' LIMIT 1");
     
@@ -13,16 +13,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $row = mysqli_fetch_assoc($hsl);
 
     if($jmlhRow > 0){ 
-        if($row["email"] == $email && $row["password"] == $password){
+        if($row["status_pengguna"] == 'Active'){
             $_SESSION['id_pengguna'] = $row['id_pengguna'];
             $_SESSION['role'] = $row['role'];
 
-            if($row['role'] == 0){
+            if($row['role'] == 'User'){
                 header("location: page-user/home.php");
-            } else if($row['role'] == 1) {
+            } else if($row['role'] == 'Admin') {
                 header("location: page-admin/data-lokasi.php");
             }
         } 
+        else{
+            header('location:login.php?status=400');
+        }
     } else {
         $cek = false;
         $was_validated = "was-validated";
@@ -83,6 +86,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             Akun berhasil dibuat.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
+                    }
+                    else{
+                        echo 
+                        "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <i class='fa-solid fa-circle-xmark mr-2'></i> Akun Anda telah dinon-aktifkan. Mohon hubungi Pusat Layanan E-Parkir!
+                            <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+                        </div>";
                     }
                 ?>
                 </div>

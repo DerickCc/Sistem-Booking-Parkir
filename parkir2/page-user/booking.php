@@ -57,26 +57,30 @@
                         $hide = "hidden";
                         $link = "";
                         $bg = "bg-secondary";
-                        $opacity = 0.7;
+                        $opacity = 0.5;
                     }
                 ?>
                 <div class="card col-10 mx-auto px-0 mb-3 <?= $link;?>" style="opacity: <?= $opacity;?>">
-                    <div class="card-header text-white <?= $bg;?> py-0 pt-2">
-                        <h5><?= $row['nama_lokasi'];?></h5>
-                    </div>
-                    <div class="card-body py-0 py-2">
-                        <div class="row my-0">
-                            <div class="col-10">
-                                <b class="mr-1">Alamat</b>: <?= $row['alamat'];?>
-                            </div>
-                            <div class="col-2">
-                                <b><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?> / jam</b>
-                            </div>
-                            <div class="col-12">
-                                <b class="mr-4">Tipe</b>: <?= ucwords($row['tipe']);?>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="../img/location/<?= $row['foto_lokasi'];?>" class="img-fluid rounded" style="height: 100px; width: 180px;">
                         </div>
-                        <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#book<?= $row['id_lokasi']?>" <?= $hide;?>></a>
+                        <div class="card-body col-md-10 py-0 py-2 pl-0">
+                                <div class="row my-0">
+                                    <h5 class="font-weight-bold <?= $bg;?> py-2 text-white"><?= $row['nama_lokasi'];?></h5>
+
+                                    <div class="col-9">
+                                        <b class="mr-1">Alamat</b>: <?= $row['alamat'];?>
+                                    </div>
+                                    <div class="col-3">
+                                        <b><?= "Rp " . number_format($row['tarif'], 2, ",", ".");?> / jam</b>
+                                    </div>
+                                    <div class="col-12">
+                                        <b class="mr-4">Tipe</b>: <?= ucwords($row['tipe']);?>
+                                    </div>
+                                </div>
+                                <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#book<?= $row['id_lokasi']?>" <?= $hide;?>></a>
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -89,7 +93,7 @@
                         <img src="../img/semarang.jpg" class="card-img-top w-100" style="height: 200px;" alt="...">
                         <div class="card-body text-center">
                             <h5><b>Semarang</b></h5>
-                            <span>Salah satu tempat kuliner Medan yang populer di semua kalangan. Tempat ini terkenal akan makanan-makanan Chinese yang tidak halal dan mengandung babi.</span>
+                            <span>Salah satu tempat kuliner Medan yang populer di semua kalangan. Tempat ini terkenal akan makanan-makanan Chinese yang tidak halal.</span>
                         </div>
                     </div>
                     <div class="card col-4 px-0 mx-2">
@@ -103,7 +107,7 @@
                         <img src="../img/metropawllys.jpeg" class="card-img-top w-100" style="height: 200px;" alt="...">
                         <div class="card-body text-center">
                             <h5><b>Metropawllys</b></h5>
-                            <span>Metropawllys adalah cafe anjing, dimana Anda dapat makan sekaligus bermain dengan anjing-anjing lucu di sana. Pilihan makananny juga beragam dan tidak kalah enak dengan cafe-cafe lainnya, ada makanan khusus untuk anjing juga lohh.</span>
+                            <span>Metropawllys adalah cafe anjing, dimana Anda dapat makan sekaligus bermain dengan anjing-anjing lucu di sana. Pilihan makananny juga beragam dan tidak kalah enak dengan cafe-cafe lainnya, ada makanan khusus untuk anjing juga.</span>
                         </div>
                     </div>
                 </div> 
