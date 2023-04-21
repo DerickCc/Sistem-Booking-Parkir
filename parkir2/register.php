@@ -13,7 +13,7 @@ if(isset($_POST["register"])){
             $no_telp = $_POST['no_telp'];
             $password = hash_hmac('sha256', $_POST['password'], 'Qw3rtiliz4t1on');
 
-            $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '', '$password', 'User', 'Active')");
+            $insert = mysqli_query($conn, "INSERT INTO pengguna VALUES ('', '$nama_depan', '$nama_belakang', '$email', '$no_telp', '', '$password', '', 'User', 'Active')");
 
             if($insert){
                 header("Location: login.php?status=1");
