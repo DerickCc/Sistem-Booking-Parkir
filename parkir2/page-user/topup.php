@@ -49,18 +49,18 @@
                                 </div>
                                 <div class="col-5 mx-auto">
                                     <div class="row mt-4">
-                                        <div class="col-6">
+                                        <div class="col-5">
                                             Nominal Top-Up
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-7">
                                             <input type="number" class="form-control" name="nominal" step="1000" required>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-6">
+                                        <div class="col-5">
                                             Metode Pembayaran
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-7">
                                             <select class="form-select" name="metode_topup" required>
                                                 <option value="BCA">BCA</option>
                                                 <option value="Mandiri">Mandiri</option>
@@ -68,10 +68,10 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-6">
+                                        <div class="col-5">
                                             No. Kartu
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-7">
                                             <input type="text" class="form-control" name="no_kartu" autocomplete="off" required
                                             pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength=19>
                                             <span class="small text-muted">Format: xxxx xxxx xxxx xxxx</span>
